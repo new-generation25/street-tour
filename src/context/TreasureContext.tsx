@@ -105,38 +105,37 @@ export const useTreasures = () => {
 
 // 앱 전체에 데이터를 공급해주는 부모 컴포넌트
 export const TreasureProvider = ({ children }: { children: ReactNode }) => {
-  const [treasures, setTreasures] = useState<Treasure[]>(() => {
-    // 앱 시작 시 localStorage에서 데이터 불러오기
-    if (typeof window === 'undefined') {
-      return initialTreasuresData;
-    }
-    try {
-      const savedTreasures = localStorage.getItem('treasures');
-      // 저장된 데이터가 유효한지 더 엄격하게 확인
-      if (savedTreasures && savedTreasures !== 'undefined') {
-        return JSON.parse(savedTreasures);
-      }
-    } catch (e) {
-      console.error("Failed to parse treasures from localStorage, clearing it.", e);
-      // 파싱 실패 시, 손상된 데이터를 삭제하여 다음 실행 시 오류 방지
-      localStorage.removeItem('treasures');
-    }
-    // 어떤 경우든 문제가 있으면 초기 데이터로 시작
-    return initialTreasuresData;
-  });
-
+  const [treasures, setTreasures] = useState<Treasure[]>(initialTreasuresData);
   const [bingoCount, setBingoCount] = useState(0);
   const [isClient, setIsClient] = useState(false);
   const [testMode, setTestMode] = useState(false);
 
   useEffect(() => {
-    setIsClient(true);
+    // 컴포넌트가 클라이언트에 마운트된 후, localStorage에서 데이터를 불러와 상태를 업데이트합니다.
+    // 이 방식은 서버 사이드 렌더링과의 충돌을 원천적으로 방지합니다.
+    try {
+      const savedTreasures = localStorage.getItem('treasures');
+      if (savedTreasures && savedTreasures !== 'undefined') {
+        const parsedTreasures = JSON.parse(savedTreasures);
+        setTreasures(parsedTreasures);
+      }
+    } catch (e) {
+      console.error("Failed to load treasures from localStorage, using initial data.", e);
+      localStorage.removeItem('treasures'); // 손상된 데이터 삭제
+    }
 
-    // treasures 상태가 변경될 때마다 localStorage에 저장
-    if (typeof window !== 'undefined') {
+    setIsClient(true);
+  }, []); // 빈 배열은 이 useEffect가 컴포넌트 마운트 시 딱 한 번만 실행됨을 의미합니다.
+
+
+  useEffect(() => {
+    // isClient가 true일 때만 (즉, 초기 로딩이 끝난 후) localStorage에 저장합니다.
+    // 이는 초기화 시점에 초기 데이터가 저장되어 기존 데이터를 덮어쓰는 것을 방지합니다.
+    if (isClient) {
       localStorage.setItem('treasures', JSON.stringify(treasures));
     }
-  }, [treasures]);
+  }, [treasures, isClient]);
+
 
   useEffect(() => {
     const count = treasures.filter(t => t.found).length;
