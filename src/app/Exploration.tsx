@@ -51,9 +51,10 @@ const Exploration = () => {
     const treasure = treasures.find(t => t.id === treasureId);
     if (treasure && treasure.quiz.answer === answer) {
       findTreasure(treasureId);
-      setToast({ message: '정답입니다.\n보물을 찾았습니다', type: 'success' }); // 문구 수정
+      // 폭죽과 토스트가 동시에 나타나도록 순서 조정
       setShowConfetti(true);
-      setTimeout(() => setShowConfetti(false), 3000); // 3초 후 폭죽 사라짐
+      setToast({ message: '정답입니다.\n보물을 찾았습니다', type: 'success' });
+      setTimeout(() => setShowConfetti(false), 4000); // 4초 후 폭죽 사라짐
       setOpenQuizId(null);
     } else {
       setToast({ message: '틀렸습니다. 다시 시도해보세요!', type: 'error' });
@@ -62,7 +63,19 @@ const Exploration = () => {
 
   return (
     <div className="page-container">
-      {showConfetti && <Confetti recycle={false} numberOfPieces={200} style={{ zIndex: 9999 }} />}
+      {showConfetti && <Confetti 
+        recycle={false} 
+        numberOfPieces={1000} // 양을 5배로 증가
+        gravity={0.15} // 중력 효과 추가
+        initialVelocityY={-10} // 위로 솟구치는 효과
+        style={{ zIndex: 9999 }} 
+        onConfettiComplete={(confetti) => {
+          if (confetti) {
+            confetti.reset();
+            setShowConfetti(false);
+          }
+        }}
+      />}
       {toast.message && <Toast message={toast.message} type={toast.type} />}
 
       {/* 1. 지도 또는 기능 표시부 */}
@@ -173,8 +186,8 @@ const Exploration = () => {
             box-shadow: 0 4px 12px rgba(0,0,0,0.08);
         }
         .item-card.found {
-          background-color: #e6f9f0; /* 완료 시 연한 녹색 배경 */
-          border-color: #32cd32;
+          background-color: #fff7ed; /* 완료 시 연한 오렌지색 배경 */
+          border-color: #fb923c; /* 완료 시 진한 오렌지색 테두리 */
         }
         .item-icon {
             font-size: 2.5rem;
@@ -207,7 +220,7 @@ const Exploration = () => {
             top: 16px;
             right: 16px;
             font-size: 1.5rem; /* 아이콘 크기 키움 */
-            color: #28a745; /* 더 진한 녹색 */
+            color: #f97316; /* 더 잘보이는 오렌지색으로 변경 */
         }
       `}</style>
     </div>

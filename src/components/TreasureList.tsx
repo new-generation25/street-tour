@@ -56,8 +56,8 @@ const TreasureList = () => {
         .treasure-item.found {
           filter: grayscale(0%);
           opacity: 1;
-          border-color: #845ef7;
-          background-color: #f3f0ff;
+          border-color: #fb923c; /* 완료 시 진한 오렌지색 테두리 */
+          background-color: #fff7ed; /* 완료 시 연한 오렌지색 배경 */
           transform: scale(1.05);
         }
         .treasure-icon {
