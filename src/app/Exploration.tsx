@@ -28,7 +28,7 @@ const Exploration = () => {
               src="/map-placeholder.png" 
               alt="지도" 
               layout="fill" 
-              objectFit="contain" // cover에서 contain으로 변경하여 이미지가 잘리지 않도록 함
+              objectFit="cover" // contain에서 cover로 변경하여 박스를 채우도록 함
             />
           </div>
         );
@@ -155,7 +155,7 @@ const Exploration = () => {
         .item-card {
           display: flex;
           gap: 16px;
-          background-color: #ffffff;
+          background-color: #e7f5ff; /* 배경색을 하늘색 계열로 변경 */
           padding: 16px;
           border-radius: 12px;
           border: 1px solid #e9ecef;
@@ -234,6 +234,7 @@ const QuizBox = ({ treasure, onSubmit }: { treasure: Treasure, onSubmit: (id: nu
             onChange={(e) => setAnswer(e.target.value)}
             placeholder="정답을 입력하세요"
             className="quiz-input"
+            autoFocus // 퀴즈 창이 열릴 때 자동으로 포커스
           />
           <button type="submit" className="quiz-submit">정답 확인</button>
         </form>
@@ -249,6 +250,7 @@ const QuizBox = ({ treasure, onSubmit }: { treasure: Treasure, onSubmit: (id: nu
           animation: slide-down 0.3s ease-out;
           margin-top: -12px; /* li와 자연스럽게 연결 */
           margin-bottom: 12px;
+          z-index: 10; /* 다른 요소 위에 있도록 z-index 추가 */
         }
         @keyframes slide-down {
           from { opacity: 0; transform: translateY(-10px); }
