@@ -38,7 +38,7 @@ const initialTreasuresData: Treasure[] = [
     icon: '🏛️',
     found: false,
     quiz: {
-      image: '/quiz/bonghwang.jpg',
+      image: '/bonghwang1935.png', // 이미지 경로 수정
       question: '현재는 카페가 된 봉황 1935는 몇년도에 세워진 건물일까요?',
       answer: '1935'
     }
