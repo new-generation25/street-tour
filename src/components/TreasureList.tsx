@@ -5,9 +5,12 @@ import { useTreasures } from '@/context/TreasureContext';
 
 const TreasureList = () => {
   const { treasures, toggleTreasure, testMode } = useTreasures();
-  
-  // 'initialTreasures' is assigned a value but never used.  @typescript-eslint/no-unused-vars 오류 해결
-  // const initialTreasures = treasures; 
+
+  const handleItemClick = (id: number) => {
+    if (testMode) {
+      toggleTreasure(id);
+    }
+  };
 
   if (!treasures) {
     return <div>보물 정보를 불러오는 중입니다...</div>;
@@ -16,16 +19,19 @@ const TreasureList = () => {
   return (
     <div className="treasure-list-container">
       <h2>보물 목록</h2>
-      <ul>
-        {treasures.map((treasure) => (
-          <li key={treasure.id} className={treasure.found ? 'found' : ''}>
-            <span>{treasure.name}</span>
-            {!treasure.found && (
-              <button onClick={() => toggleTreasure(treasure.id)}>찾기</button>
-            )}
-          </li>
+      <div className="treasure-grid">
+        {treasures.map(treasure => (
+          <div 
+            key={treasure.id} 
+            className={`treasure-item ${treasure.found ? 'found' : ''}`}
+            onClick={() => handleItemClick(treasure.id)}
+            style={{ cursor: testMode ? 'pointer' : 'default' }}
+          >
+            <div className="treasure-icon">{treasure.icon}</div>
+            <div className="treasure-name">{treasure.name}</div>
+          </div>
         ))}
-      </ul>
+      </div>
       <style jsx>{`
         .treasure-list-container {
           padding: 20px;
@@ -65,4 +71,6 @@ const TreasureList = () => {
       `}</style>
     </div>
   );
-}; 
+};
+
+export default TreasureList; 

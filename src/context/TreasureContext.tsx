@@ -1,6 +1,6 @@
 "use client";
 
-import React, { createContext, useState, useContext, ReactNode } from 'react';
+import React, { createContext, useState, useContext, ReactNode, useEffect } from 'react';
 
 // 보물 하나하나의 모양 정의
 export interface Treasure {
@@ -13,11 +13,14 @@ export interface Treasure {
 }
 
 // 전역으로 관리할 데이터와 함수의 모양 정의
-interface TreasureContextType {
+export interface TreasureContextType {
   treasures: Treasure[];
   findTreasure: (id: number) => void;
-  foundCount: number;
-  totalCount: number;
+  toggleTreasure: (id: number) => void; // 테스트용 토글 함수
+  bingoCount: number;
+  isClient: boolean;
+  testMode: boolean; // 테스트 모드 상태
+  setTestMode: (mode: boolean) => void; // 테스트 모드 변경 함수
 }
 
 // 초기 보물 데이터
@@ -55,10 +58,29 @@ export const useTreasures = () => {
 // 앱 전체에 데이터를 공급해주는 부모 컴포넌트
 export const TreasureProvider = ({ children }: { children: ReactNode }) => {
   const [treasures, setTreasures] = useState<Treasure[]>(initialTreasures);
+  const [bingoCount, setBingoCount] = useState(0);
+  const [isClient, setIsClient] = useState(false);
+  const [testMode, setTestMode] = useState(false); // 테스트 모드 상태 추가
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
+  useEffect(() => {
+    const count = treasures.filter(t => t.found).length;
+    setBingoCount(count);
+  }, [treasures, isClient]);
 
   const findTreasure = (id: number) => {
     setTreasures(prevTreasures =>
       prevTreasures.map(t => (t.id === id ? { ...t, found: true } : t))
+    );
+  };
+
+  // 테스트 모드에서 보물 상태를 직접 토글하는 함수
+  const toggleTreasure = (id: number) => {
+    setTreasures(prevTreasures =>
+      prevTreasures.map(t => (t.id === id ? { ...t, found: !t.found } : t))
     );
   };
 
@@ -68,12 +90,15 @@ export const TreasureProvider = ({ children }: { children: ReactNode }) => {
   const value = {
     treasures,
     findTreasure,
-    foundCount,
-    totalCount,
+    toggleTreasure,
+    bingoCount,
+    isClient,
+    testMode,
+    setTestMode,
   };
 
   return (
-    <TreasureContext.Provider value={value}>
+    <TreasureContext.Provider value={{ treasures, findTreasure, toggleTreasure, bingoCount, isClient, testMode, setTestMode }}>
       {children}
     </TreasureContext.Provider>
   );
