@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import Image from 'next/image'; // Image 컴포넌트 import
-import { useTreasures } from '@/context/TreasureContext';
+import { useTreasures, Treasure } from '@/context/TreasureContext';
 
 const Exploration = () => {
   const [activeSubTab, setActiveSubTab] = useState('지도');
@@ -188,7 +188,7 @@ const Exploration = () => {
 };
 
 // 퀴즈 UI를 별도 컴포넌트로 분리
-const QuizBox = ({ treasure, onSubmit }: { treasure: any, onSubmit: (id: number, answer: string) => void }) => {
+const QuizBox = ({ treasure, onSubmit }: { treasure: Treasure, onSubmit: (id: number, answer: string) => void }) => {
   const [answer, setAnswer] = useState('');
 
   const handleSubmit = (e: React.FormEvent) => {
