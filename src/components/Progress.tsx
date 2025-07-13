@@ -5,7 +5,10 @@ import React from 'react';
 import { useTreasures } from '@/context/TreasureContext';
 
 const Progress = () => {
-  const { foundCount, totalCount } = useTreasures();
+  const { treasures } = useTreasures();
+  
+  const foundCount = treasures.filter(t => t.found).length;
+  const totalCount = treasures.length;
   const percentage = totalCount > 0 ? (foundCount / totalCount) * 100 : 0;
 
   return (
