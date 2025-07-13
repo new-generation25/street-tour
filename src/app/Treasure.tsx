@@ -24,9 +24,27 @@ const Treasure = () => {
       <TreasureList />
 
       <div className="reward-section">
-        <h3>획득 가능한 보상</h3>
-        <div className="reward-item">🎁 특별 굿즈</div>
-        <div className="reward-item">🎟️ 히든 스테이지 입장권</div>
+        <h3>🎁 선물 교환소</h3>
+        <div className={`reward-card ${bingoCount >= 1 ? 'unlocked' : ''}`}>
+          <div className="reward-icon">☕</div>
+          <div className="reward-info">
+            <h4>1빙고 달성!</h4>
+            <p>아메리카노 1잔 증정</p>
+          </div>
+          {bingoCount >= 1 && <div className="reward-status">✔️</div>}
+        </div>
+        <div className={`reward-card ${bingoCount >= 3 ? 'unlocked' : ''}`}>
+          <div className="reward-icon">🎁</div>
+          <div className="reward-info">
+            <h4>3빙고 달성!</h4>
+            <p>DMO 선물세트 증정</p>
+          </div>
+          {bingoCount < 3 && <div className="reward-lock">🔒 3빙고 달성 시 해제</div>}
+        </div>
+        <div className="reward-location">
+          📍 선물 교환 장소: 봉황하숙 (봉황대길 중앙)
+          <p>영업시간: 10:00 - 20:00</p>
+        </div>
       </div>
 
       {/* 4. 테스트 모드 토글 버튼 추가 */}
@@ -73,14 +91,50 @@ const Treasure = () => {
           text-align: center;
           margin-bottom: 8px;
         }
-        .reward-item {
+        .reward-card {
+          display: flex;
+          gap: 16px;
           padding: 16px;
           border-radius: 12px;
-          background: #f8f9fa;
+          background: #fff;
+          align-items: center;
+          opacity: 0.5;
           border: 1px solid #e9ecef;
-          font-size: 1rem;
+          transition: all 0.3s ease;
+        }
+        .reward-card.unlocked {
+          opacity: 1;
+          border-color: #845ef7;
+        }
+        .reward-icon {
+          font-size: 2rem;
+        }
+        .reward-info h4 {
           font-weight: bold;
+          margin: 0;
+        }
+        .reward-info p {
+          font-size: 0.9rem;
+          color: #6c757d;
+          margin: 4px 0 0 0;
+        }
+        .reward-status, .reward-lock {
+          margin-left: auto;
+          font-size: 1.5rem;
+        }
+        .reward-location {
+          margin-top: 16px;
           text-align: center;
+          padding: 16px;
+          background: #f8f9fa;
+          border-radius: 12px;
+          font-size: 0.9rem;
+          color: #495057;
+        }
+        .reward-location p {
+          margin: 4px 0 0 0;
+          font-size: 0.8rem;
+          color: #6c757d;
         }
         .test-mode-toggle {
           margin-top: 16px;

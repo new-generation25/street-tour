@@ -31,7 +31,7 @@ export default function Home() {
         <Header />
         <Progress />
         
-        <main className="content-area">
+        <main className="main-content">
           {renderContent()}
         </main>
         

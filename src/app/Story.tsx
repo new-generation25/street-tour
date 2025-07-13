@@ -9,34 +9,34 @@ interface StoryProps {
 const Story = ({ onStart }: StoryProps) => {
   return (
     <div className="story-container">
-      <div className="main-image-wrapper">
-        <Image 
-          src="/jjack-story.png" 
-          alt="짹과 봉황대 유리 목걸이의 비밀" 
-          width={400} 
-          height={400}
-          priority // 우선적으로 로드
-        />
+      <div className="story-content">
+        <div className="main-image-wrapper">
+          <Image 
+            src="/jjack-story.png" 
+            alt="짹과 봉황대 유리 목걸이의 비밀" 
+            width={400} 
+            height={400}
+            priority // 우선적으로 로드
+          />
+        </div>
+        <div className="story-box">
+          <h2>집안의 가보로 내려온 유리구슬 목걸이</h2>
+          <p>
+            짹은 할머니 집에서 오래된 유리구슬 목걸이를 발견한다.
+            <br />
+            집안의 가보로 내려오던 유리구슬 목걸이는 할머니가 짹의 아버지에게 물려줄 예정이었다.
+          </p>
+          <p>
+            하지만 짹은 한눈에 유리구슬 목걸이가 자신의 것임을 알았고 할머니의 이야기를 듣지않고 가져가 버린다.
+          </p>
+          <p>
+            하지만 짹은 그 목걸이의 진정한 힘을 알지 못했는데...
+            <br />
+            과연 유리구슬 목걸이에는 어떤 힘이 담겨 있었던 것일까?
+          </p>
+        </div>
       </div>
-      <div className="story-box">
-        <h2>집안의 가보로 내려온 유리구슬 목걸이</h2>
-        <p>
-          짹은 할머니 집에서 오래된 유리구슬 목걸이를 발견한다.
-          <br />
-          집안의 가보로 내려오던 유리구슬 목걸이는 할머니가 짹의 아버지에게 물려줄 예정이었다.
-        </p>
-        <p>
-          하지만 짹은 한눈에 유리구슬 목걸이가 자신의 것임을 알았고 할머니의 이야기를 듣지않고 가져가 버린다.
-        </p>
-        <p>
-          하지만 짹은 그 목걸이의 진정한 힘을 알지 못했는데...
-          <br />
-          과연 유리구슬 목걸이에는 어떤 힘이 담겨 있었던 것일까?
-        </p>
-      </div>
-      <button className="start-button" onClick={onStart}>
-        ✨ 모험 시작하기 ✨
-      </button>
+      <button onClick={onStart} className="start-button">탐험 시작하기</button>
 
       <style jsx>{`
         .story-container {
@@ -44,6 +44,12 @@ const Story = ({ onStart }: StoryProps) => {
           text-align: center;
           display: flex;
           flex-direction: column;
+        }
+        .story-content {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          margin-bottom: 24px;
         }
         .main-image-wrapper {
           width: 100%;

@@ -18,7 +18,6 @@ const TreasureList = () => {
 
   return (
     <div className="treasure-list-container">
-      <h2>보물 목록</h2>
       <div className="treasure-grid">
         {treasures.map(treasure => (
           <div 
@@ -32,41 +31,44 @@ const TreasureList = () => {
           </div>
         ))}
       </div>
+
       <style jsx>{`
-        .treasure-list-container {
-          padding: 20px;
-          margin-top: 20px;
-          border: 1px solid #ddd;
-          border-radius: 8px;
+        .treasure-grid {
+          display: grid;
+          grid-template-columns: repeat(4, 1fr);
+          gap: 10px;
         }
-        h2 {
-          margin-bottom: 15px;
-        }
-        ul {
-          list-style: none;
-          padding: 0;
-        }
-        li {
+        .treasure-item {
+          aspect-ratio: 1 / 1;
+          background-color: #fff;
+          border: 1px solid #e9ecef;
+          border-radius: 12px;
           display: flex;
-          justify-content: space-between;
+          flex-direction: column;
           align-items: center;
-          padding: 10px;
-          border-bottom: 1px solid #eee;
+          justify-content: center;
+          text-align: center;
+          padding: 8px;
+          transition: all 0.2s ease-in-out;
+          filter: grayscale(90%);
+          opacity: 0.7;
         }
-        li.found {
-          text-decoration: line-through;
-          color: #aaa;
+        .treasure-item.found {
+          filter: grayscale(0%);
+          opacity: 1;
+          border-color: #845ef7;
+          background-color: #f3f0ff;
+          transform: scale(1.05);
         }
-        button {
-          padding: 5px 10px;
-          border: none;
-          background-color: #007bff;
-          color: white;
-          border-radius: 5px;
-          cursor: pointer;
+        .treasure-icon {
+          font-size: 2rem;
+          line-height: 1;
         }
-        button:hover {
-          background-color: #0056b3;
+        .treasure-name {
+          margin-top: 8px;
+          font-size: 0.75rem;
+          font-weight: 500;
+          color: #495057;
         }
       `}</style>
     </div>

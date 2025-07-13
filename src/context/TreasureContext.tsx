@@ -10,6 +10,11 @@ export interface Treasure {
   description: string;
   icon: string;
   found: boolean;
+  quiz: {
+    image: string;
+    question: string;
+    answer: string;
+  };
 }
 
 // 전역으로 관리할 데이터와 함수의 모양 정의
@@ -24,23 +29,61 @@ export interface TreasureContextType {
 }
 
 // 초기 보물 데이터
-const initialTreasures: Treasure[] = [
-    { id: 1, name: '카페 봉황1935', subtitle: '1935년', description: '일제강점기 적산가옥을 리모델링한 다국적 향취의 카페', icon: '🏛️', found: true },
-    { id: 2, name: '미야상회', subtitle: '전통', description: '어릴 적 동네에 있던 작은 상점의 정취를 간직한 곳', icon: '🏪', found: true },
-    { id: 3, name: '탱자카페', subtitle: '1930년', description: '해반천 모래로 만든 기와의 1930년 고옥 카페', icon: '🌿', found: true },
-    { id: 4, name: '가야대장간', subtitle: '2대째', description: '2대째 가업으로 전통 대장간의 명맥을 잇는 곳', icon: '🔨', found: false },
-    { id: 5, name: '기와조각', subtitle: '신라시대', description: '오래된 가옥에서 발견된 신라시대 기와 한 조각', icon: '🧱', found: false },
-    { id: 6, name: '고문서', subtitle: '조선시대', description: '조선시대의 생활상이 기록된 낡은 고문서', icon: '📜', found: false },
-    { id: 7, name: '벚꽃잎', subtitle: '봄의 전령', description: '봉황대길에 흩날리던 아름다운 봄의 증표', icon: '🌸', found: false },
-    { id: 8, name: '풍경소리', subtitle: '마음의 평화', description: '처마 밑에서 울려퍼지는 맑고 청아한 소리', icon: '🔔', found: false },
-    { id: 9, name: '금단지', subtitle: '가야의 유물', description: '가야시대의 화려한 문화를 보여주는 금 장식', icon: '🏺', found: false },
-    { id: 10, name: '탈', subtitle: '전통 놀이', description: '마을의 안녕을 기원하던 전통 탈춤에 사용된 탈', icon: '🎭', found: false },
-    { id: 11, name: '달빛조각', subtitle: '밤의 선물', description: '월정교 아래 강물에 비친 달의 반짝이는 조각', icon: '🌙', found: false },
-    { id: 12, name: '별가루', subtitle: '하늘의 축복', description: '첨성대에서 바라본 밤하늘의 반짝이는 별가루', icon: '✨', found: false },
-    { id: 13, name: '봉황깃털', subtitle: '전설의 새', description: '봉황이 남기고 갔다는 전설 속 오색찬란한 깃털', icon: '🪶', found: false },
-    { id: 14, name: '수로왕인장', subtitle: '가야의 건국', description: '가야를 건국한 수로왕의 위엄을 상징하는 인장', icon: '👑', found: false },
-    { id: 15, name: '옥구슬', subtitle: '왕의 장신구', description: '왕족만이 가질 수 있었던 귀한 푸른 옥구슬', icon: '🟢', found: false },
-    { id: 16, name: '황금열쇠', subtitle: '미로의 끝', description: '미로의 모든 비밀을 풀 수 있는 마지막 열쇠', icon: '🔑', found: false },
+const initialTreasuresData: Treasure[] = [
+  {
+    id: 1,
+    name: '카페 봉황 1935',
+    subtitle: '1935년',
+    description: '일제강점기 적산가옥을 리모델링한 다국적 향취의 카페',
+    icon: '🏛️',
+    found: false,
+    quiz: {
+      image: '/quiz/bonghwang.jpg',
+      question: '현재는 카페가 된 봉황 1935는 몇년도에 세워진 건물일까요?',
+      answer: '1935'
+    }
+  },
+  {
+    id: 2,
+    name: '미야상회',
+    subtitle: '전통',
+    description: '어릴 적 동네에 있던 작은 상점의 정취를 간직한 곳',
+    icon: '🏪',
+    found: false,
+    quiz: {
+      image: '/quiz/miya.jpg',
+      question: '미야상회 사장님의 이름은 무엇일까요?',
+      answer: '경미'
+    }
+  },
+  {
+    id: 3,
+    name: '탱자카페',
+    subtitle: '정원',
+    description: '아름다운 정원과 고즈넉한 분위기가 매력적인 전통 찻집',
+    icon: '🌳',
+    found: false,
+    quiz: {
+      image: '/quiz/taengja.jpg',
+      question: '탱자카페에는 탱자나무가 있다, 없다?',
+      answer: '있다'
+    }
+  },
+  // ... 나머지 13개 보물 데이터 ...
+  // (나머지 데이터는 퀴즈 내용을 임시로 채워넣겠습니다)
+  { id: 4, name: '달빛조각', subtitle: '공방', description: '...', icon: '🌙', found: false, quiz: { image: '', question: 'Q4', answer: 'A4' } },
+  { id: 5, name: '별가루', subtitle: '소품샵', description: '...', icon: '✨', found: false, quiz: { image: '', question: 'Q5', answer: 'A5' } },
+  { id: 6, name: '봉황깃털', subtitle: '기념품', description: '...', icon: '🪶', found: false, quiz: { image: '', question: 'Q6', answer: 'A6' } },
+  { id: 7, name: '수로왕인장', subtitle: '유물', description: '...', icon: '👑', found: false, quiz: { image: '', question: 'Q7', answer: 'A7' } },
+  { id: 8, name: '옥구슬', subtitle: '보석', description: '...', icon: '🟢', found: false, quiz: { image: '', question: 'Q8', answer: 'A8' } },
+  { id: 9, name: '황금열쇠', subtitle: '미스터리', description: '...', icon: '🔑', found: false, quiz: { image: '', question: 'Q9', answer: 'A9' } },
+  { id: 10, name: '시간의 모래', subtitle: '유물', description: '...', icon: '⏳', found: false, quiz: { image: '', question: 'Q10', answer: 'A10' } },
+  { id: 11, name: '지혜의 두루마리', subtitle: '고서', description: '...', icon: '📜', found: false, quiz: { image: '', question: 'Q11', answer: 'A11' } },
+  { id: 12, name: '용기의 물약', subtitle: '비약', description: '...', icon: '🧪', found: false, quiz: { image: '', question: 'Q12', answer: 'A12' } },
+  { id: 13, name: '고요의 피리', subtitle: '악기', description: '...', icon: '🎶', found: false, quiz: { image: '', question: 'Q13', answer: 'A13' } },
+  { id: 14, name: '수호의 방패', subtitle: '장비', description: '...', icon: '🛡️', found: false, quiz: { image: '', question: 'Q14', answer: 'A14' } },
+  { id: 15, name: '인연의 실', subtitle: '전설', description: '...', icon: '❤️', found: false, quiz: { image: '', question: 'Q15', answer: 'A15' } },
+  { id: 16, name: '가야의 왕관', subtitle: '국보', description: '...', icon: '👑', found: false, quiz: { image: '', question: 'Q16', answer: 'A16' } },
 ];
 
 // Context 생성 (처음엔 비어있음)
@@ -57,7 +100,7 @@ export const useTreasures = () => {
 
 // 앱 전체에 데이터를 공급해주는 부모 컴포넌트
 export const TreasureProvider = ({ children }: { children: ReactNode }) => {
-  const [treasures, setTreasures] = useState<Treasure[]>(initialTreasures);
+  const [treasures, setTreasures] = useState<Treasure[]>(initialTreasuresData);
   const [bingoCount, setBingoCount] = useState(0);
   const [isClient, setIsClient] = useState(false);
   const [testMode, setTestMode] = useState(false); // 테스트 모드 상태 추가
