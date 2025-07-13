@@ -39,7 +39,7 @@ const initialTreasuresData: Treasure[] = [
     description: '일제강점기 적산가옥을 리모델링한 다국적 향취의 카페',
     icon: '🏛️',
     found: false,
-    lat: 35.2372, lng: 128.876, // 좌표 추가
+    lat: 35.1834, lng: 128.8821, // 수정: 실제 위치 좌표로 변경
     quiz: {
       image: '/bonghwang1935.png', // 이미지 경로 수정
       question: '현재는 카페가 된 봉황 1935는 몇년도에 세워진 건물일까요?',
