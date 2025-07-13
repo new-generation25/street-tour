@@ -11,6 +11,8 @@ const NaverMap = ({ treasures }: NaverMapProps) => {
   const mapElement = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    if (treasures.length === 0) return;
+
     const { naver } = window;
     if (!mapElement.current || !naver) return;
 
