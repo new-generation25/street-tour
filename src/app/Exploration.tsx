@@ -3,18 +3,20 @@
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { useTreasures, Treasure } from '@/context/TreasureContext';
+import Confetti from 'react-confetti';
 
 const Exploration = () => {
   const [activeSubTab, setActiveSubTab] = useState('지도');
   const [openQuizId, setOpenQuizId] = useState<number | null>(null);
   const { treasures, findTreasure } = useTreasures();
   const [toast, setToast] = useState<{ message: string; type: 'success' | 'error' | '' }>({ message: '', type: '' });
+  const [showConfetti, setShowConfetti] = useState(false);
 
   useEffect(() => {
     if (toast.message) {
       const timer = setTimeout(() => {
         setToast({ message: '', type: '' });
-      }, 2000); // 2초 후에 토스트 메시지 사라짐
+      }, 2500);
       return () => clearTimeout(timer);
     }
   }, [toast]);
@@ -49,7 +51,9 @@ const Exploration = () => {
     const treasure = treasures.find(t => t.id === treasureId);
     if (treasure && treasure.quiz.answer === answer) {
       findTreasure(treasureId);
-      setToast({ message: '정답입니다! 보물을 획득했습니다.', type: 'success' });
+      setToast({ message: '정답입니다.\n보물을 찾았습니다', type: 'success' }); // 문구 수정
+      setShowConfetti(true);
+      setTimeout(() => setShowConfetti(false), 3000); // 3초 후 폭죽 사라짐
       setOpenQuizId(null);
     } else {
       setToast({ message: '틀렸습니다. 다시 시도해보세요!', type: 'error' });
@@ -58,6 +62,7 @@ const Exploration = () => {
 
   return (
     <div className="page-container">
+      {showConfetti && <Confetti recycle={false} numberOfPieces={200} />}
       {toast.message && <Toast message={toast.message} type={toast.type} />}
 
       {/* 1. 지도 또는 기능 표시부 */}
@@ -234,7 +239,6 @@ const QuizBox = ({ treasure, onSubmit }: { treasure: Treasure, onSubmit: (id: nu
             onChange={(e) => setAnswer(e.target.value)}
             placeholder="정답을 입력하세요"
             className="quiz-input"
-            // autoFocus 속성 제거
           />
           <button type="submit" className="quiz-submit">정답 확인</button>
         </form>
@@ -275,6 +279,7 @@ const QuizBox = ({ treasure, onSubmit }: { treasure: Treasure, onSubmit: (id: nu
           padding: 10px;
           border: 1px solid #ced4da;
           border-radius: 6px;
+          color: #212529; /* 입력 글자색 검정으로 지정 */
         }
         .quiz-submit {
           padding: 10px 16px;
@@ -298,16 +303,18 @@ const Toast = ({ message, type }: { message: string; type: 'success' | 'error' |
       <style jsx>{`
         .toast {
           position: fixed;
-          top: 20px;
+          top: 50%;
           left: 50%;
-          transform: translateX(-50%);
-          padding: 12px 24px;
-          border-radius: 8px;
+          transform: translate(-50%, -50%);
+          padding: 16px 32px;
+          border-radius: 12px;
           color: white;
           font-weight: bold;
           z-index: 1000;
-          animation: fade-in-out 2s ease-in-out;
-          box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+          animation: fade-in-out 2.5s ease-in-out forwards;
+          box-shadow: 0 4px 20px rgba(0,0,0,0.25);
+          text-align: center;
+          white-space: pre-line;
         }
         .toast.success {
           background-color: #28a745;
@@ -316,10 +323,10 @@ const Toast = ({ message, type }: { message: string; type: 'success' | 'error' |
           background-color: #dc3545;
         }
         @keyframes fade-in-out {
-          0% { opacity: 0; top: 0; }
-          25% { opacity: 1; top: 20px; }
-          75% { opacity: 1; top: 20px; }
-          100% { opacity: 0; top: 0; }
+          0% { opacity: 0; transform: translate(-50%, -50%) scale(0.8); }
+          20% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+          80% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+          100% { opacity: 0; transform: translate(-50%, -50%) scale(0.8); }
         }
       `}</style>
     </div>
