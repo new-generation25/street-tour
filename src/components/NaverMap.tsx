@@ -13,6 +13,7 @@ const NaverMap = ({ treasures }: NaverMapProps) => {
   const { isLoaded } = useScriptLoad();
 
   useEffect(() => {
+    // 조건 확인: 스크립트 로드 완료, 데이터 수신, DOM 요소 준비 완료
     if (!isLoaded || treasures.length === 0 || !mapElement.current) {
       return;
     }
@@ -20,32 +21,36 @@ const NaverMap = ({ treasures }: NaverMapProps) => {
     const { naver } = window;
     if (!naver) return;
 
-    // 지도 인스턴스를 변수에 저장하여 cleanup에서 참조할 수 있도록 함
+    // 지도 인스턴스 생성
     const map = new naver.maps.Map(mapElement.current, {
       center: new naver.maps.LatLng(treasures[0].lat, treasures[0].lng),
       zoom: 16,
     });
 
+    // 마커 생성 (원래의 이모지 아이콘 기능 복원)
     treasures.forEach(treasure => {
       new naver.maps.Marker({
         position: new naver.maps.LatLng(treasure.lat, treasure.lng),
         map: map,
+        icon: {
+          content: `<div style="font-size: 24px;">${treasure.icon}</div>`,
+          anchor: new naver.maps.Point(12, 12),
+        },
       });
     });
 
-    // ✨ 중요: Cleanup 함수
-    // 이 useEffect가 다시 실행되거나 컴포넌트가 사라지기 전에 실행됨
+    // 컴포넌트 언마운트 또는 재렌더링 시 지도 인스턴스 파괴 (Cleanup)
     return () => {
-      map.destroy(); // 생성된 지도 인스턴스를 깨끗하게 파괴
+      map.destroy();
     };
 
-  }, [treasures, isLoaded]);
+  }, [isLoaded, treasures]); // 의존성 배열을 isLoaded와 treasures로 명확히 함
 
-  // 로딩 중이거나 데이터가 없을 때 빈 컨테이너만 렌더링
+  // 로딩/데이터 없음 상태에서는 렌더링하지 않도록 하여 깜빡임 방지
   if (!isLoaded || treasures.length === 0) {
-    return <div style={{ width: '100%', height: '100%' }} />;
+    return <div style={{ width: '100%', height: '100%', backgroundColor: '#f0f0f0' }} />;
   }
-
+  
   return <div ref={mapElement} style={{ width: '100%', height: '100%' }} />;
 };
 
