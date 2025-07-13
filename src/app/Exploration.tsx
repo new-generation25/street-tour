@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from 'react';
+import Image from 'next/image'; // Image 컴포넌트 import
 import { useTreasures } from '@/context/TreasureContext';
 
 const Exploration = () => {
@@ -13,7 +14,12 @@ const Exploration = () => {
         // 가상 지도 이미지 삽입
         return (
           <div className="map-image-wrapper">
-            <img src="/map-placeholder.png" alt="지도" />
+            <Image 
+              src="/map-placeholder.png" 
+              alt="지도" 
+              layout="fill" 
+              objectFit="cover"
+            />
           </div>
         );
       case 'QR':
@@ -67,12 +73,10 @@ const Exploration = () => {
             border-radius: 12px;
             background-color: #e9ecef;
             overflow: hidden; /* 이미지가 둥근 모서리를 넘지 않도록 설정 */
+            position: relative; /* layout="fill"을 위해 추가 */
         }
-        .map-image-wrapper img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover; /* 이미지가 컨테이너에 꽉 차도록 설정 */
-        }
+        /* .map-image-wrapper img 스타일은 Image 컴포넌트가 처리하므로 제거하거나 수정 불필요 */
+        
         .qr-placeholder, .ar-placeholder {
           height: 250px;
           display: flex;
