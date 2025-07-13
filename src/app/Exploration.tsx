@@ -112,6 +112,7 @@ const Exploration = () => {
           position: relative; /* Toast 메시지 위치 기준 */
         }
         .feature-display-box {
+          height: 250px; /* 추가: 지도가 표시될 영역의 높이를 지정 */
           margin-bottom: 16px;
           border-radius: 12px;
           overflow: hidden;
