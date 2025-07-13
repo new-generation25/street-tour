@@ -10,8 +10,8 @@ export interface Treasure {
   description: string;
   icon: string;
   found: boolean;
-  lat: number;  // 위도 추가
-  lng: number;  // 경도 추가
+  lat: number;
+  lng: number;
   quiz: {
     image: string;
     question: string;
@@ -23,11 +23,11 @@ export interface Treasure {
 export interface TreasureContextType {
   treasures: Treasure[];
   findTreasure: (id: number) => void;
-  toggleTreasure: (id: number) => void; // 테스트용 토글 함수
+  toggleTreasure: (id: number) => void;
   bingoCount: number;
   isClient: boolean;
-  testMode: boolean; // 테스트 모드 상태
-  setTestMode: (mode: boolean) => void; // 테스트 모드 변경 함수
+  testMode: boolean;
+  setTestMode: (mode: boolean) => void;
 }
 
 // 초기 보물 데이터
@@ -62,15 +62,15 @@ const initialTreasuresData: Treasure[] = [
   },
   {
     id: 3,
-    name: '탱자카페',
+    name: '카페 탱자',
     subtitle: '정원',
     description: '아름다운 정원과 고즈넉한 분위기가 매력적인 전통 찻집',
     icon: '🌳',
     found: false,
     lat: 35.229360, lng: 128.879832, // 수정: Max님께서 알려주신 정확한 좌표
     quiz: {
-      image: '/quiz/taengja.jpg',
-      question: '탱자카페에는 탱자나무가 있다, 없다?',
+      image: '/taengja.png',
+      question: '카페 탱자에는 탱자나무가 있다, 없다?',
       answer: '있다'
     }
   },
