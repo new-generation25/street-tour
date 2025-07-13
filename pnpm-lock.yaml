@@ -27,6 +27,9 @@ importers:
         specifier: ^1.0.0-alpha.11
         version: 1.0.0-alpha.11(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
     devDependencies:
+      '@babel/runtime':
+        specifier: ^7.24.8
+        version: 7.27.6
       '@eslint/eslintrc':
         specifier: ^3
         version: 3.3.1
@@ -64,6 +67,10 @@ packages:
   '@ampproject/remapping@2.3.0':
     resolution: {integrity: sha512-30iZtAPgz+LTIYoeivqYo853f02jBYSd5uGnGpkFV0M3xOt9aN73erkgYAmZU43x4VfqcnLxW9Kpg3R5LC4YYw==}
     engines: {node: '>=6.0.0'}
+
+  '@babel/runtime@7.27.6':
+    resolution: {integrity: sha512-vbavdySgbTTrmFE+EsiqUTzlOr5bzlnJtUv9PynGCAKvfQqjIXbvFdumPM/GxMDfyuGMJaJAU6TO4zc1Jf1i8Q==}
+    engines: {node: '>=6.9.0'}
 
   '@emnapi/core@1.4.4':
     resolution: {integrity: sha512-A9CnAbC6ARNMKcIcrQwq6HeHCjpcBZ5wSx4U01WXCqEKlrzB9F9315WDNHkrs2xbx7YjjSxbUYxuN6EQzpcY2g==}
@@ -1876,6 +1883,8 @@ snapshots:
     dependencies:
       '@jridgewell/gen-mapping': 0.3.12
       '@jridgewell/trace-mapping': 0.3.29
+
+  '@babel/runtime@7.27.6': {}
 
   '@emnapi/core@1.4.4':
     dependencies:

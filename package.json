@@ -17,6 +17,7 @@
     "react-qr-scanner": "^1.0.0-alpha.11"
   },
   "devDependencies": {
+    "@babel/runtime": "^7.24.8",
     "@eslint/eslintrc": "^3",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
