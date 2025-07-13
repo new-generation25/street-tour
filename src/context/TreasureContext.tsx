@@ -84,19 +84,6 @@ export const TreasureProvider = ({ children }: { children: ReactNode }) => {
     );
   };
 
-  const foundCount = treasures.filter(t => t.found).length;
-  const totalCount = treasures.length;
-
-  const value = {
-    treasures,
-    findTreasure,
-    toggleTreasure,
-    bingoCount,
-    isClient,
-    testMode,
-    setTestMode,
-  };
-
   return (
     <TreasureContext.Provider value={{ treasures, findTreasure, toggleTreasure, bingoCount, isClient, testMode, setTestMode }}>
       {children}
