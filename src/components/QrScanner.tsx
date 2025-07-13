@@ -6,22 +6,26 @@ import dynamic from 'next/dynamic';
 // QrScanner를 클라이언트 측에서만 렌더링하도록 동적 로딩
 const QrScanner = dynamic(() => import('react-qr-scanner'), { ssr: false });
 
+interface ScanData {
+  text: string;
+}
+
 interface QrScannerComponentProps {
   onScan: (data: string) => void;
-  onError: (error: any) => void;
+  onError: (error: unknown) => void;
 }
 
 const QrScannerComponent = ({ onScan, onError }: QrScannerComponentProps) => {
   const [isScannerActive, setIsScannerActive] = useState(false);
 
-  const handleScan = (data: any) => {
+  const handleScan = (data: ScanData | null) => {
     if (data) {
       onScan(data.text);
       setIsScannerActive(false); // 스캔 성공 시 스캐너 비활성화
     }
   };
 
-  const handleError = (err: any) => {
+  const handleError = (err: unknown) => {
     console.error(err);
     onError(err);
     setIsScannerActive(false);

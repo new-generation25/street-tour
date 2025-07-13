@@ -49,7 +49,10 @@ const Exploration = () => {
       case '지도':
         return <NaverMap treasures={treasures} />;
       case 'QR':
-        return <QrScanner onScan={handleQrScanSuccess} onError={() => setToast({ message: '카메라를 열 수 없습니다.', type: 'error' })} />;
+        return <QrScanner onScan={handleQrScanSuccess} onError={(error) => {
+          console.error("QR Scanner Error:", error);
+          setToast({ message: '카메라를 열 수 없습니다.', type: 'error' });
+        }} />;
       case 'AR':
         return <div className="feature-placeholder">AR 뷰가 여기에 표시됩니다.</div>;
       default:
