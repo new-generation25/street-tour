@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { useTreasures, Treasure } from '@/context/TreasureContext';
 import Confetti from 'react-confetti';
 import NaverMap from '@/components/NaverMap';
+import QrScanner from '@/components/QrScanner'; // QrScanner 컴포넌트 import
 
 const Exploration = () => {
   const [activeSubTab, setActiveSubTab] = useState('지도');
@@ -22,12 +23,33 @@ const Exploration = () => {
     }
   }, [toast]);
 
+  const handleQrScanSuccess = (scannedData: string) => {
+    // QR 데이터가 유효한 숫자인지 확인
+    const treasureId = parseInt(scannedData, 10);
+    if (!isNaN(treasureId)) {
+      const targetTreasure = treasures.find(t => t.id === treasureId);
+      // 해당 보물이 존재하고 아직 찾지 않았다면
+      if (targetTreasure && !targetTreasure.found) {
+        findTreasure(treasureId);
+        setShowConfetti(true);
+        setToast({ message: `'${targetTreasure.name}' 보물을 찾았습니다!`, type: 'success' });
+        setTimeout(() => setShowConfetti(false), 4000);
+      } else if (targetTreasure && targetTreasure.found) {
+        setToast({ message: '이미 찾은 보물입니다!', type: 'error' });
+      } else {
+        setToast({ message: '유효하지 않은 QR 코드입니다.', type: 'error' });
+      }
+    } else {
+      setToast({ message: '숫자 형식의 QR 코드가 아닙니다.', type: 'error' });
+    }
+  };
+
   const renderSubContent = () => {
     switch (activeSubTab) {
       case '지도':
         return <NaverMap treasures={treasures} />;
       case 'QR':
-        return <div className="feature-placeholder">QR 코드 스캐너가 여기에 표시됩니다.</div>;
+        return <QrScanner onScan={handleQrScanSuccess} onError={() => setToast({ message: '카메라를 열 수 없습니다.', type: 'error' })} />;
       case 'AR':
         return <div className="feature-placeholder">AR 뷰가 여기에 표시됩니다.</div>;
       default:
