@@ -21,7 +21,7 @@ export default function Home() {
       case '보물':
         return <Treasure />;
       default:
-        return <Story />;
+        return <Story onStart={() => setActiveTab('탐험')} />;
     }
   };
 
