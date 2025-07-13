@@ -51,7 +51,7 @@ const initialTreasuresData: Treasure[] = [
     icon: '🏪',
     found: false,
     quiz: {
-      image: '/quiz/miya.jpg',
+      image: '/miyastore.png', // 이미지 경로 수정
       question: '미야상회 사장님의 이름은 무엇일까요?',
       answer: '경미'
     }

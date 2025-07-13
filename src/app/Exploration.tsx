@@ -62,7 +62,7 @@ const Exploration = () => {
 
   return (
     <div className="page-container">
-      {showConfetti && <Confetti recycle={false} numberOfPieces={200} />}
+      {showConfetti && <Confetti recycle={false} numberOfPieces={200} style={{ zIndex: 9999 }} />}
       {toast.message && <Toast message={toast.message} type={toast.type} />}
 
       {/* 1. 지도 또는 기능 표시부 */}
