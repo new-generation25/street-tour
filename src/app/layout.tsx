@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ScriptLoadProvider } from "@/context/ScriptLoadContext";
+import { TreasureProvider } from "@/context/TreasureContext";
 import LayoutClient from "@/components/LayoutClient";
 
 const geistSans = Geist({
@@ -26,11 +27,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <ScriptLoadProvider>
-        <LayoutClient className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-          {children}
-        </LayoutClient>
-      </ScriptLoadProvider>
+      <TreasureProvider>
+        <ScriptLoadProvider>
+          <LayoutClient className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+            {children}
+          </LayoutClient>
+        </ScriptLoadProvider>
+      </TreasureProvider>
     </html>
   );
 }
