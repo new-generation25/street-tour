@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { useTreasures, Treasure } from '@/context/TreasureContext';
 import Confetti from 'react-confetti';
+import NaverMap from '@/components/NaverMap';
 
 const Exploration = () => {
   const [activeSubTab, setActiveSubTab] = useState('지도');
@@ -24,16 +25,7 @@ const Exploration = () => {
   const renderSubContent = () => {
     switch (activeSubTab) {
       case '지도':
-        return (
-          <div className="map-image-wrapper">
-            <Image 
-              src="/map-placeholder.png" 
-              alt="지도" 
-              layout="fill" 
-              objectFit="cover" // contain에서 cover로 변경하여 박스를 채우도록 함
-            />
-          </div>
-        );
+        return <NaverMap treasures={treasures} />;
       case 'QR':
         return <div className="feature-placeholder">QR 코드 스캐너가 여기에 표시됩니다.</div>;
       case 'AR':
