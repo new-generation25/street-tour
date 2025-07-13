@@ -40,16 +40,11 @@ export default function Home() {
 
       <style jsx global>{`
         .app-container {
-          display: flex;
-          flex-direction: column;
-          height: 100vh;
-          max-width: 480px; /*一般的なモバイル画面の最大幅*/
+          max-width: 480px;
           margin: 0 auto;
-          background-color: #f0f0f0; /* 부드러운 회색 배경 */
+          background-color: #f0f0f0;
         }
         .main-content {
-          flex: 1;
-          overflow-y: auto; /* 콘텐츠가 길어지면 스크롤 */
           padding-bottom: 80px; /* BottomNav 높이만큼 패딩 추가 */
         }
       `}</style>

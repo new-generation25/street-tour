@@ -13,19 +13,24 @@ const Progress = () => {
 
   return (
     <div className="progress-container">
-      <div className="progress-bar">
-        <div className="progress-fill" id="progressFill" style={{ width: `${percentage}%` }}></div>
+      <div className="progress-bar-wrapper">
+        <div className="progress-bar">
+          <div className="progress-fill" id="progressFill" style={{ width: `${percentage}%` }}></div>
+        </div>
       </div>
-      <div className="progress-text">
-        <span id="progressText">{`${foundCount}/${totalCount} 보물 수집완료`}</span>
-      </div>
+      <div className="progress-text">{foundCount} / {totalCount} 보물 수집 완료</div>
+
       <style jsx>{`
         .progress-container {
-            padding: 20px;
-            background: #f8f9fa;
+          padding: 10px 16px;
+          background-color: var(--background);
+          position: sticky;
+          top: 0;
+          z-index: 100;
+          box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
-        .progress-bar {
-            background: #e9ecef;
+        .progress-bar-wrapper {
+          background-color: #e9ecef;
             border-radius: 10px;
             overflow: hidden;
             margin-bottom: 10px;

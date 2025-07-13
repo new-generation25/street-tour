@@ -15,7 +15,7 @@ const tabs = [
 
 export const BottomNav = ({ activeTab, setActiveTab }: BottomNavProps) => {
   return (
-    <nav className="bottom-nav-container">
+    <div className="bottom-nav-container">
       {tabs.map((tab) => (
         <button
           key={tab.name}
@@ -28,46 +28,46 @@ export const BottomNav = ({ activeTab, setActiveTab }: BottomNavProps) => {
       ))}
       <style jsx>{`
         .bottom-nav-container {
+          display: flex;
           position: fixed;
           bottom: 0;
           left: 0;
           right: 0;
-          height: 70px; /* 높이 증가 */
-          display: flex;
-          justify-content: space-around;
-          align-items: center;
-          background-color: #ffffff;
-          border-top: 1px solid #f0f0f0;
-          max-width: 420px; /* app-container와 동일하게 */
+          height: 60px;
+          background-color: #845ef7; /* 배경색을 보라색 계열로 변경 */
+          box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+          max-width: 480px;
           margin: 0 auto;
-          box-shadow: 0 -2px 10px rgba(0,0,0,0.05);
         }
         .nav-button {
+          flex: 1;
           background: none;
           border: none;
           cursor: pointer;
           display: flex;
           flex-direction: column;
           align-items: center;
+          justify-content: center;
           gap: 4px;
-          color: #999;
-          font-size: 12px;
-          font-weight: 500;
-          transition: all 0.2s;
-          padding: 8px;
-          border-radius: 8px;
+          color: #e9ecef; /* 아이콘/텍스트 기본 색상 변경 */
+          font-size: 0.7rem;
         }
         .icon {
           font-size: 1.5rem;
         }
         .nav-button.active {
-          color: #6d28d9; /* 활성 탭 색상 (시안 참고) */
-          transform: translateY(-2px);
+          color: #ffffff; /* 활성화 시 색상을 흰색으로 변경 */
+        }
+        .nav-button.active .nav-icon {
+          transform: scale(1.1);
+        }
+        .nav-icon {
+          font-size: 1.5rem;
         }
         .nav-button.active span:last-child {
             font-weight: 700;
         }
       `}</style>
-    </nav>
+    </div>
   );
 }; 
