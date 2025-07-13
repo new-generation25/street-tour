@@ -234,7 +234,7 @@ const QuizBox = ({ treasure, onSubmit }: { treasure: Treasure, onSubmit: (id: nu
             onChange={(e) => setAnswer(e.target.value)}
             placeholder="정답을 입력하세요"
             className="quiz-input"
-            autoFocus // 퀴즈 창이 열릴 때 자동으로 포커스
+            // autoFocus 속성 제거
           />
           <button type="submit" className="quiz-submit">정답 확인</button>
         </form>

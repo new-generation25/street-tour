@@ -36,7 +36,7 @@ const TreasureList = () => {
         .treasure-grid {
           display: grid;
           grid-template-columns: repeat(4, 1fr);
-          gap: 10px;
+          gap: 8px; /* 간격을 10px에서 8px로 줄임 */
         }
         .treasure-item {
           aspect-ratio: 1 / 1;
@@ -48,7 +48,7 @@ const TreasureList = () => {
           align-items: center;
           justify-content: center;
           text-align: center;
-          padding: 8px;
+          padding: 4px; /* 패딩을 8px에서 4px로 줄임 */
           transition: all 0.2s ease-in-out;
           filter: grayscale(90%);
           opacity: 0.7;
