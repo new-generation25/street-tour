@@ -9,30 +9,18 @@ interface NaverMapProps {
 }
 
 const NaverMap = ({ treasures }: NaverMapProps) => {
+  // 1. 모든 React 훅을 컴포넌트 최상단에서 호출 (규칙 준수)
   const mapElement = useRef<HTMLDivElement>(null);
   const { isLoaded } = useScriptLoad();
 
-  // 1. 스크립트 로드 상태 확인
-  if (!isLoaded) {
-    return <div style={{ height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundColor: '#f0f0f0' }}>
-      디버그: 스크립트 로딩 중...
-    </div>;
-  }
-
-  // 2. 데이터 수신 상태 확인
-  if (treasures.length === 0) {
-    return <div style={{ height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundColor: '#f0f0f0' }}>
-      디버그: 데이터 로딩 중... (보물 개수: 0)
-    </div>;
-  }
-
-  // 3. 모든 조건 충족 시 지도 렌더링 시도
   useEffect(() => {
-    // 이 부분은 그대로 유지
-    if (!isLoaded || treasures.length === 0) return;
+    // 2. 조건 확인은 useEffect 내부에서 수행
+    if (!isLoaded || treasures.length === 0 || !mapElement.current) {
+      return; // 조건이 맞지 않으면 아무것도 하지 않음
+    }
 
     const { naver } = window;
-    if (!mapElement.current || !naver) return;
+    if (!naver) return;
 
     const center = new naver.maps.LatLng(treasures[0].lat, treasures[0].lng);
     const map = new naver.maps.Map(mapElement.current, {
@@ -53,10 +41,20 @@ const NaverMap = ({ treasures }: NaverMapProps) => {
 
   }, [treasures, isLoaded]);
 
-  // 모든 조건이 통과했을 때만 이 div가 렌더링됨
-  return <div ref={mapElement} style={{ width: '100%', height: '100%' }}>
-    {/* 화면에 보이지 않지만, 이 div가 있다는 것은 모든 조건이 통과했다는 의미 */}
-  </div>;
+  // 3. 훅 호출이 모두 끝난 후에 조건부 렌더링 수행
+  if (!isLoaded) {
+    return <div style={{ height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundColor: '#f0f0f0' }}>
+      디버그: 스크립트 로딩 중...
+    </div>;
+  }
+
+  if (treasures.length === 0) {
+    return <div style={{ height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundColor: '#f0f0f0' }}>
+      디버그: 데이터 로딩 중... (보물 개수: 0)
+    </div>;
+  }
+
+  return <div ref={mapElement} style={{ width: '100%', height: '100%' }} />;
 };
 
 export default NaverMap; 

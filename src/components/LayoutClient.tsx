@@ -16,7 +16,7 @@ export default function LayoutClient({
     <body className={className}>
       {children}
       <Script
-        strategy="beforeInteractive"
+        strategy="afterInteractive"
         src={`https://oapi.map.naver.com/openapi/v3/maps.js?ncpClientId=${process.env.NEXT_PUBLIC_NAVER_CLIENT_ID}`}
         onLoad={() => {
           setIsLoaded(true);
