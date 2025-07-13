@@ -1,13 +1,23 @@
 "use client";
 
-import React, { useState } from 'react';
-import Image from 'next/image'; // Image 컴포넌트 import
+import React, { useState, useEffect } from 'react';
+import Image from 'next/image';
 import { useTreasures, Treasure } from '@/context/TreasureContext';
 
 const Exploration = () => {
   const [activeSubTab, setActiveSubTab] = useState('지도');
-  const [openQuizId, setOpenQuizId] = useState<number | null>(null); // 현재 열린 퀴즈 ID 상태
+  const [openQuizId, setOpenQuizId] = useState<number | null>(null);
   const { treasures, findTreasure } = useTreasures();
+  const [toast, setToast] = useState<{ message: string; type: 'success' | 'error' | '' }>({ message: '', type: '' });
+
+  useEffect(() => {
+    if (toast.message) {
+      const timer = setTimeout(() => {
+        setToast({ message: '', type: '' });
+      }, 2000); // 2초 후에 토스트 메시지 사라짐
+      return () => clearTimeout(timer);
+    }
+  }, [toast]);
 
   const renderSubContent = () => {
     switch (activeSubTab) {
@@ -18,7 +28,7 @@ const Exploration = () => {
               src="/map-placeholder.png" 
               alt="지도" 
               layout="fill" 
-              objectFit="cover"
+              objectFit="contain" // cover에서 contain으로 변경하여 이미지가 잘리지 않도록 함
             />
           </div>
         );
@@ -39,15 +49,17 @@ const Exploration = () => {
     const treasure = treasures.find(t => t.id === treasureId);
     if (treasure && treasure.quiz.answer === answer) {
       findTreasure(treasureId);
-      alert('정답입니다! 보물을 획득했습니다.');
-      setOpenQuizId(null); // 퀴즈 닫기
+      setToast({ message: '정답입니다! 보물을 획득했습니다.', type: 'success' });
+      setOpenQuizId(null);
     } else {
-      alert('틀렸습니다. 다시 시도해보세요!');
+      setToast({ message: '틀렸습니다. 다시 시도해보세요!', type: 'error' });
     }
   };
 
   return (
     <div className="page-container">
+      {toast.message && <Toast message={toast.message} type={toast.type} />}
+
       {/* 1. 지도 또는 기능 표시부 */}
       <div className="feature-display-box">
         {renderSubContent()}
@@ -86,7 +98,8 @@ const Exploration = () => {
 
       <style jsx>{`
         .page-container {
-          padding: 10px 0;
+          padding: 10px 16px; /* 좌우 패딩 추가 */
+          position: relative; /* Toast 메시지 위치 기준 */
         }
         .feature-display-box {
           margin-bottom: 16px;
@@ -94,9 +107,10 @@ const Exploration = () => {
           overflow: hidden;
           border: 1px solid #dee2e6;
           box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+          background-color: #fff; /* 지도 배경 흰색으로 유지 */
         }
         .map-image-wrapper {
-            position: relative; /* Image의 layout="fill"을 위해 필수 */
+            position: relative;
             width: 100%;
             height: 250px; 
         }
@@ -141,15 +155,21 @@ const Exploration = () => {
         .item-card {
           display: flex;
           gap: 16px;
-          background-color: #ffffff; /* 가독성을 위해 흰색 배경으로 변경 */
+          background-color: #ffffff;
           padding: 16px;
           border-radius: 12px;
           border: 1px solid #e9ecef;
           position: relative;
-          cursor: pointer; /* 클릭 가능함을 표시 */
+          cursor: pointer;
+          transition: all 0.2s ease-in-out;
+        }
+        .item-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
         }
         .item-card.found {
-          border-left: 5px solid #32cd32; /* 더 잘보이는 초록색으로 변경 */
+          background-color: #e6f9f0; /* 완료 시 연한 녹색 배경 */
+          border-color: #32cd32;
         }
         .item-icon {
             font-size: 2.5rem;
@@ -165,6 +185,7 @@ const Exploration = () => {
         .item-content h4 {
             font-weight: bold;
             margin-bottom: 4px;
+            color: #212529; /* 글자색을 더 진하게 */
         }
         .item-content h4 span {
             font-size: 0.8rem;
@@ -174,13 +195,14 @@ const Exploration = () => {
         }
         .item-content p {
             font-size: 0.9rem;
-            color: #495057;
+            color: #495057; /* 글자색을 더 진하게 */
         }
         .found-check {
             position: absolute;
             top: 16px;
             right: 16px;
-            color: #32cd32; /* 더 잘보이는 초록색으로 변경 */
+            font-size: 1.5rem; /* 아이콘 크기 키움 */
+            color: #28a745; /* 더 진한 녹색 */
         }
       `}</style>
     </div>
@@ -218,13 +240,15 @@ const QuizBox = ({ treasure, onSubmit }: { treasure: Treasure, onSubmit: (id: nu
       </div>
       <style jsx>{`
         .quiz-box {
-          background-color: #fff;
-          margin: -12px 0 12px 0;
+          background-color: #f8f9fa; /* 퀴즈 박스 배경색 변경 */
+          margin: 0;
           padding: 20px;
           border-radius: 0 0 12px 12px;
           border: 1px solid #e9ecef;
           border-top: none;
           animation: slide-down 0.3s ease-out;
+          margin-top: -12px; /* li와 자연스럽게 연결 */
+          margin-bottom: 12px;
         }
         @keyframes slide-down {
           from { opacity: 0; transform: translateY(-10px); }
@@ -238,6 +262,7 @@ const QuizBox = ({ treasure, onSubmit }: { treasure: Treasure, onSubmit: (id: nu
         .quiz-question {
           font-weight: bold;
           margin-bottom: 12px;
+          color: #212529; /* 질문 글자색 진하게 */
         }
         .quiz-form {
           display: flex;
@@ -262,5 +287,41 @@ const QuizBox = ({ treasure, onSubmit }: { treasure: Treasure, onSubmit: (id: nu
     </div>
   )
 }
+
+// Toast 컴포넌트 추가
+const Toast = ({ message, type }: { message: string; type: 'success' | 'error' | '' }) => {
+  return (
+    <div className={`toast ${type}`}>
+      {message}
+      <style jsx>{`
+        .toast {
+          position: fixed;
+          top: 20px;
+          left: 50%;
+          transform: translateX(-50%);
+          padding: 12px 24px;
+          border-radius: 8px;
+          color: white;
+          font-weight: bold;
+          z-index: 1000;
+          animation: fade-in-out 2s ease-in-out;
+          box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+        .toast.success {
+          background-color: #28a745;
+        }
+        .toast.error {
+          background-color: #dc3545;
+        }
+        @keyframes fade-in-out {
+          0% { opacity: 0; top: 0; }
+          25% { opacity: 1; top: 20px; }
+          75% { opacity: 1; top: 20px; }
+          100% { opacity: 0; top: 0; }
+        }
+      `}</style>
+    </div>
+  );
+};
 
 export default Exploration; 
