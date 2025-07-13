@@ -105,14 +105,35 @@ export const useTreasures = () => {
 
 // 앱 전체에 데이터를 공급해주는 부모 컴포넌트
 export const TreasureProvider = ({ children }: { children: ReactNode }) => {
-  const [treasures, setTreasures] = useState<Treasure[]>(initialTreasuresData);
+  const [treasures, setTreasures] = useState<Treasure[]>(() => {
+    // 앱 시작 시 localStorage에서 데이터 불러오기
+    if (typeof window !== 'undefined') {
+      const savedTreasures = localStorage.getItem('treasures');
+      // 저장된 데이터가 있으면 파싱하고, 없으면 초기 데이터 사용
+      if (savedTreasures) {
+        try {
+          return JSON.parse(savedTreasures);
+        } catch (e) {
+          console.error("Failed to parse treasures from localStorage", e);
+          return initialTreasuresData;
+        }
+      }
+    }
+    return initialTreasuresData;
+  });
+
   const [bingoCount, setBingoCount] = useState(0);
   const [isClient, setIsClient] = useState(false);
-  const [testMode, setTestMode] = useState(false); // 테스트 모드 상태 추가
+  const [testMode, setTestMode] = useState(false);
 
   useEffect(() => {
     setIsClient(true);
-  }, []);
+
+    // treasures 상태가 변경될 때마다 localStorage에 저장
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('treasures', JSON.stringify(treasures));
+    }
+  }, [treasures]);
 
   useEffect(() => {
     const count = treasures.filter(t => t.found).length;
