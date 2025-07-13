@@ -107,18 +107,21 @@ export const useTreasures = () => {
 export const TreasureProvider = ({ children }: { children: ReactNode }) => {
   const [treasures, setTreasures] = useState<Treasure[]>(() => {
     // 앱 시작 시 localStorage에서 데이터 불러오기
-    if (typeof window !== 'undefined') {
-      const savedTreasures = localStorage.getItem('treasures');
-      // 저장된 데이터가 있으면 파싱하고, 없으면 초기 데이터 사용
-      if (savedTreasures) {
-        try {
-          return JSON.parse(savedTreasures);
-        } catch (e) {
-          console.error("Failed to parse treasures from localStorage", e);
-          return initialTreasuresData;
-        }
-      }
+    if (typeof window === 'undefined') {
+      return initialTreasuresData;
     }
+    try {
+      const savedTreasures = localStorage.getItem('treasures');
+      // 저장된 데이터가 유효한지 더 엄격하게 확인
+      if (savedTreasures && savedTreasures !== 'undefined') {
+        return JSON.parse(savedTreasures);
+      }
+    } catch (e) {
+      console.error("Failed to parse treasures from localStorage, clearing it.", e);
+      // 파싱 실패 시, 손상된 데이터를 삭제하여 다음 실행 시 오류 방지
+      localStorage.removeItem('treasures');
+    }
+    // 어떤 경우든 문제가 있으면 초기 데이터로 시작
     return initialTreasuresData;
   });
 
