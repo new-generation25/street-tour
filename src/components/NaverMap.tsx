@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from 'react';
 import { Treasure } from '@/context/TreasureContext';
+import { useScriptLoad } from '@/context/ScriptLoadContext';
 
 interface NaverMapProps {
   treasures: Treasure[];
@@ -9,9 +10,11 @@ interface NaverMapProps {
 
 const NaverMap = ({ treasures }: NaverMapProps) => {
   const mapElement = useRef<HTMLDivElement>(null);
+  const { isLoaded } = useScriptLoad();
 
   useEffect(() => {
-    if (treasures.length === 0) return;
+    // isLoaded가 false이거나 treasures 배열이 비어있으면 실행하지 않음
+    if (!isLoaded || treasures.length === 0) return;
 
     const { naver } = window;
     if (!mapElement.current || !naver) return;
@@ -35,7 +38,7 @@ const NaverMap = ({ treasures }: NaverMapProps) => {
       });
     });
 
-  }, [treasures]);
+  }, [treasures, isLoaded]);
 
   return <div ref={mapElement} style={{ width: '100%', height: '100%' }} />;
 };
