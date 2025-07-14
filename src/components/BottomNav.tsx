@@ -10,7 +10,8 @@ interface BottomNavProps {
 const tabs = [
   { name: '스토리', icon: '📖' },
   { name: '탐험', icon: '🗺️' },
-  { name: '보물', icon: '💎' }
+  { name: '보물', icon: '💎' },
+  { name: '커뮤니티', icon: '👥' }
 ];
 
 export const BottomNav = ({ activeTab, setActiveTab }: BottomNavProps) => {
@@ -30,17 +31,16 @@ export const BottomNav = ({ activeTab, setActiveTab }: BottomNavProps) => {
         .bottom-nav-container {
           display: flex;
           position: fixed;
-          bottom: 10px;
+          bottom: 0;
           left: 0;
           right: 0;
-          height: 70px;
+          height: 78px;
           background-color: var(--nav-purple);
           backdrop-filter: blur(0);
           box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
           max-width: 480px;
           margin: 0 auto;
-          border-radius: 16px 16px 0 0;
-          padding: 0 8px 10px 8px;
+          padding: 8px 8px 8px 8px;
         }
         .nav-button {
           flex: 1;

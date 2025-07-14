@@ -49,7 +49,7 @@ const Story = ({ onStart }: StoryProps) => {
           display: flex;
           flex-direction: column;
           align-items: center;
-          margin-bottom: 24px;
+          margin-bottom: 8px;
         }
         .main-image-wrapper {
           width: 100%;
@@ -88,7 +88,7 @@ const Story = ({ onStart }: StoryProps) => {
           font-weight: bold;
           cursor: pointer;
           transition: transform 0.2s;
-          margin: 24px 16px 0; /* 상하좌우 여백 추가 */
+          margin: 8px 16px 0; /* 상하좌우 여백 추가 */
         }
         .start-button:hover {
           transform: scale(1.05);

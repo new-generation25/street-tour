@@ -6,6 +6,7 @@ import Progress from "@/components/Progress";
 import Story from './Story';
 import Exploration from './Exploration';
 import Treasure from './Treasure';
+import Community from './Community';
 import { BottomNav } from '@/components/BottomNav';
 import { TreasureProvider } from "@/context/TreasureContext";
 
@@ -20,6 +21,8 @@ export default function Home() {
         return <Exploration />;
       case '보물':
         return <Treasure />;
+      case '커뮤니티':
+        return <Community />;
       default:
         return <Story onStart={() => setActiveTab('탐험')} />;
     }
