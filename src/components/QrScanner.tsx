@@ -23,7 +23,7 @@ const QrScannerComponent = ({ onScan, onError }: QrScannerComponentProps) => {
 
     try {
       const mediaStream = await navigator.mediaDevices.getUserMedia({
-        video: { facingMode: 'environment' } // 후면 카메라 사용
+        video: { facingMode: { ideal: 'environment' } } // 후면 카메라 우선 시도
       });
       
       if (videoRef.current) {
@@ -40,8 +40,25 @@ const QrScannerComponent = ({ onScan, onError }: QrScannerComponentProps) => {
         // QR 코드 스캔 시작
         scanIntervalRef.current = setInterval(scanQRCode, 500);
       }
-    } catch (error) {
+    } catch (error: any) {
       console.error('카메라 접근 오류:', error);
+      // 후면 카메라가 없거나 실패한 경우, 기본(전면) 카메라로 한 번 더 시도
+      if (error?.name === 'NotReadableError' || error?.name === 'OverconstrainedError' || error?.name === 'NotFoundError') {
+        try {
+          const mediaStream = await navigator.mediaDevices.getUserMedia({ video: true });
+          if (videoRef.current) {
+            videoRef.current.srcObject = mediaStream;
+            await videoRef.current.play();
+            setStream(mediaStream);
+            setIsScannerActive(true);
+            scanIntervalRef.current = setInterval(scanQRCode, 500);
+            return;
+          }
+        } catch (fallbackError) {
+          console.error('QR Scanner Error (fallback):', fallbackError);
+          onError(fallbackError);
+        }
+      }
       onError(error);
     }
   };
