@@ -30,7 +30,7 @@ export const BottomNav = ({ activeTab, setActiveTab }: BottomNavProps) => {
         .bottom-nav-container {
           display: flex;
           position: fixed;
-          bottom: 0;
+          bottom: 20px;
           left: 0;
           right: 0;
           height: 60px;
@@ -39,6 +39,8 @@ export const BottomNav = ({ activeTab, setActiveTab }: BottomNavProps) => {
           box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
           max-width: 480px;
           margin: 0 auto;
+          border-radius: 16px;
+          padding: 0 8px;
         }
         .nav-button {
           flex: 1;

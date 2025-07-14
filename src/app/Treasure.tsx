@@ -54,6 +54,8 @@ const Treasure = () => {
           display: flex;
           flex-direction: column;
           gap: 24px;
+          overflow-x: hidden;
+          width: 100%;
         }
         .bingo-status {
           text-align: center;
@@ -105,7 +107,7 @@ const Treasure = () => {
         }
         .reward-info p {
           font-size: 0.9rem;
-          color: #6c757d;
+          color: #495057;
           margin: 4px 0 0 0;
         }
         .reward-status, .reward-lock {

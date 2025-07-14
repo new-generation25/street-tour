@@ -23,6 +23,18 @@ const Exploration = () => {
     }
   }, [toast]);
 
+  // 탐험 페이지 진입 시 최상단으로 스크롤
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  // 탭 변경 시 지도 탭이면 최상단으로 스크롤
+  useEffect(() => {
+    if (activeSubTab === '지도') {
+      window.scrollTo(0, 0);
+    }
+  }, [activeSubTab]);
+
   const handleQrScanSuccess = (scannedData: string) => {
     // 문자열에 포함된 첫 숫자 시퀀스를 추출
     const numericMatch = scannedData.match(/(\d+)/);
