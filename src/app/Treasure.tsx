@@ -6,7 +6,7 @@ import { useTreasures } from '@/context/TreasureContext';
 
 const Treasure = () => {
   // 2. 필요한 모든 데이터와 함수를 context에서 가져오기
-  const { bingoCount, isClient, testMode, setTestMode } = useTreasures();
+  const { bingoCount, isClient } = useTreasures();
   
   // 클라이언트 측에서만 렌더링되도록 처리 (Hydration 오류 방지)
   if (!isClient) {
@@ -45,18 +45,6 @@ const Treasure = () => {
           📍 선물 교환 장소: 봉황하숙 (봉황대길 중앙)
           <p>영업시간: 10:00 - 20:00</p>
         </div>
-      </div>
-
-      {/* 4. 테스트 모드 토글 버튼 추가 */}
-      <div className="test-mode-toggle">
-        <label>
-          <input 
-            type="checkbox" 
-            checked={testMode} 
-            onChange={(e) => setTestMode(e.target.checked)}
-          />
-          보물 찾기 테스트 모드 활성화
-        </label>
       </div>
 
 
@@ -135,21 +123,6 @@ const Treasure = () => {
           margin: 4px 0 0 0;
           font-size: 0.8rem;
           color: #6c757d;
-        }
-        .test-mode-toggle {
-          margin-top: 16px;
-          padding: 12px;
-          background-color: #f0f2f5;
-          border-radius: 8px;
-          text-align: center;
-          font-size: 0.9rem;
-        }
-        .test-mode-toggle label {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          gap: 8px;
-          cursor: pointer;
         }
       `}</style>
     </div>
