@@ -212,7 +212,7 @@ const Exploration = () => {
         }
         .item-icon {
             font-size: 2.5rem;
-            background-color: var(--icon-background);
+            background-color: transparent;
             width: 60px;
             height: 60px;
             display: flex;
@@ -220,11 +220,11 @@ const Exploration = () => {
             justify-content: center;
             border-radius: 8px;
             flex-shrink: 0;
-            border: 1px solid #e9ecef;
+            border: none;
         }
         .item-card.found .item-icon {
-            background-color: rgba(255, 255, 255, 0.2);
-            border-color: rgba(255, 255, 255, 0.3);
+            background-color: transparent;
+            border: none;
         }
         .item-content h4 {
             font-weight: bold;
