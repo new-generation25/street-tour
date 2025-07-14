@@ -24,8 +24,9 @@ const Exploration = () => {
   }, [toast]);
 
   const handleQrScanSuccess = (scannedData: string) => {
-    // QR 데이터가 유효한 숫자인지 확인
-    const treasureId = parseInt(scannedData, 10);
+    // 문자열에 포함된 첫 숫자 시퀀스를 추출
+    const numericMatch = scannedData.match(/(\d+)/);
+    const treasureId = numericMatch ? parseInt(numericMatch[1], 10) : NaN;
     if (!isNaN(treasureId)) {
       const targetTreasure = treasures.find(t => t.id === treasureId);
       // 해당 보물이 존재하고 아직 찾지 않았다면
