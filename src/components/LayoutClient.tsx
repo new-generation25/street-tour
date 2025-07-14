@@ -33,13 +33,14 @@ export default function LayoutClient({
       {/* 글로벌 컬러 변수 주입 */}
       <style jsx global>{`
         :root {
-          --primary: #7D41A6; /* purple */
-          --primary-dark: #7C92A6; /* slate */
-          --primary-light: #D9C8B4; /* beige */
+          /* new palette */
+          --primary: #F2884B; /* orange */
+          --primary-dark: #A6351C; /* brick red */
+          --primary-light: #D9D9D9; /* light grey */
 
-          --secondary: #5C7346; /* olive green */
-          --secondary-dark: #29402A; /* dark green */
-          --secondary-light: #A6B88F; /* light olive */
+          --secondary: #7D8C45; /* olive green */
+          --secondary-dark: #732720; /* dark brown */
+          --secondary-light: #C5CF9B; /* light olive (derived) */
         }
       `}</style>
       <Script
