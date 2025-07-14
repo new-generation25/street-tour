@@ -25,4 +25,20 @@ body {
   --primary: #9d34ff; /* vibrant purple */
   --secondary: #ff8c00; /* orange */
   --primary-light: #f3e8ff;
+}
+
+/* utility classes */
+.btn-primary {
+  background: var(--primary);
+  color: #fff;
+  border-radius: 8px;
+  padding: 12px 24px;
+  font-weight: 700;
+  transition: opacity .2s ease;
+}
+.btn-primary:hover { opacity: .9; }
+
+.bg-gradient-main {
+  background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+  color:#fff;
 } 

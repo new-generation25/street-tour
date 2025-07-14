@@ -10,7 +10,7 @@ export const Header = () => {
         <p>맥과 함께하는 골목투어 어드벤처</p>
       <style jsx>{`
         .header {
-          background: linear-gradient(135deg, #43CBFF 0%, #9708CC 100%);
+          background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
           color: white;
           padding: 40px 20px 20px 20px;
           text-align: center;
