@@ -29,6 +29,18 @@ export default function LayoutClient({
   return (
     <body className={className}>
       {children}
+
+      {/* 글로벌 컬러 변수 주입 */}
+      <style jsx global>{`
+        :root {
+          --primary: #9d34ff;
+          --primary-dark: #7a00d4;
+          --primary-light: #f3e8ff;
+          --secondary: #ff8c00;
+          --secondary-dark: #ff6a00;
+          --secondary-light: #ffe8cc;
+        }
+      `}</style>
       <Script
         strategy="afterInteractive"
         src={`https://oapi.map.naver.com/openapi/v3/maps.js?ncpKeyId=${process.env.NEXT_PUBLIC_NAVER_CLIENT_ID}`}
