@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useRef, useEffect } from 'react';
+import jsQR from 'jsqr';
 
 interface QrScannerComponentProps {
   onScan: (data: string) => void;
@@ -84,9 +85,16 @@ const QrScannerComponent = ({ onScan, onError }: QrScannerComponentProps) => {
     ctx.drawImage(video, 0, 0);
 
     const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
-    
-    // 간단한 QR 코드 패턴 감지 (실제 구현에서는 더 정교한 라이브러리 사용)
-    // 여기서는 임시로 사용자 입력을 받는 방식으로 구현
+
+    // jsQR 라이브러리를 사용해 QR 코드 디코딩
+    const qrCode = jsQR(imageData.data, imageData.width, imageData.height, {
+      inversionAttempts: 'attemptBoth',
+    });
+
+    if (qrCode) {
+      onScan(qrCode.data);
+      stopCamera();
+    }
   };
 
   // 수동 입력 기능 제거됨
