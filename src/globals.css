@@ -27,6 +27,7 @@ body {
   --primary-light: #f3e8ff;
   --secondary-light: #ffe8cc;
   --secondary-dark: #ff6a00;
+  --primary-dark: #7a00d4;
 }
 
 /* utility classes */
