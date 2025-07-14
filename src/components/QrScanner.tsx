@@ -15,6 +15,12 @@ const QrScannerComponent = ({ onScan, onError }: QrScannerComponentProps) => {
   const scanIntervalRef = useRef<NodeJS.Timeout | null>(null);
 
   const startCamera = async () => {
+    // 사용자에게 명확한 허용 메시지를 먼저 표시
+    const allowed = window.confirm('"봉황대길 골목투어"가 카메라를 사용하도록 허용하시겠습니까?');
+    if (!allowed) {
+      return; // 허용하지 않으면 아무 것도 하지 않음
+    }
+
     try {
       const mediaStream = await navigator.mediaDevices.getUserMedia({
         video: { facingMode: 'environment' } // 후면 카메라 사용
@@ -22,6 +28,12 @@ const QrScannerComponent = ({ onScan, onError }: QrScannerComponentProps) => {
       
       if (videoRef.current) {
         videoRef.current.srcObject = mediaStream;
+        // iOS Safari 및 일부 브라우저에서 자동 재생을 확실히 하기 위해 play() 호출
+        try {
+          await videoRef.current.play();
+        } catch (playError) {
+          console.warn('비디오 자동 재생 실패:', playError);
+        }
         setStream(mediaStream);
         setIsScannerActive(true);
         
