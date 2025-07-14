@@ -37,7 +37,7 @@ const Progress = () => {
         }
         .progress-fill {
             height: 20px;
-            background: linear-gradient(90deg, #28a745, #20c997);
+            background: linear-gradient(90deg, var(--secondary), var(--primary));
             border-radius: 10px;
             transition: width 0.5s ease;
             position: relative;

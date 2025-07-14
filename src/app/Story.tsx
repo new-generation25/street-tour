@@ -56,8 +56,8 @@ const Story = ({ onStart }: StoryProps) => {
           margin-bottom: 24px;
         }
         .story-box {
-          background-color: rgba(108, 99, 255, 0.1);
-          border: 1px solid rgba(108, 99, 255, 0.2);
+          background-color: var(--primary-light);
+          border: 1px solid var(--primary-dark);
           border-radius: 16px;
           padding: 24px;
           text-align: left; /* 텍스트 왼쪽 정렬 */
@@ -79,8 +79,8 @@ const Story = ({ onStart }: StoryProps) => {
             margin-bottom: 0;
         }
         .start-button {
-          background: linear-gradient(to right, #fde047, #f97316);
-          color: #4a3f2d;
+          background: linear-gradient(135deg, var(--primary), var(--secondary));
+          color: #ffffff;
           border: none;
           border-radius: 9999px;
           padding: 16px 32px;

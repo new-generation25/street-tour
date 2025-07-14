@@ -22,12 +22,12 @@ body {
 }
 
 :root {
-  --primary: #F29F05; /* amber */
-  --primary-light: #D9C2AD; /* beige */
-  --primary-dark: #8C3926; /* brown */
-  --secondary: #9CBF50; /* green */
-  --secondary-light: #cfe5a6;
-  --secondary-dark: #BF4D34; /* brick red */
+  --primary: #7D41A6; /* purple */
+  --primary-light: #D9C8B4; /* beige */
+  --primary-dark: #7C92A6; /* slate */
+  --secondary: #5C7346; /* olive */
+  --secondary-light: #A6B88F;
+  --secondary-dark: #29402A; /* dark green */
 }
 
 /* utility classes */
