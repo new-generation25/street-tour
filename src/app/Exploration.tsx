@@ -60,7 +60,7 @@ const Exploration = () => {
   const renderSubContent = () => {
     switch (activeSubTab) {
       case '지도':
-        return <NaverMap treasures={treasures} />;
+        return <NaverMap treasures={treasures} onMarkerClick={handleMapMarkerClick} />;
       case 'QR':
         return <QrScanner onScan={handleQrScanSuccess} onError={(error) => {
           console.error("QR Scanner Error:", error);
@@ -75,6 +75,25 @@ const Exploration = () => {
 
   const handleLocationClick = (treasureId: number) => {
     setOpenQuizId(prevId => (prevId === treasureId ? null : treasureId)); // 클릭 시 퀴즈 열고 닫기
+  };
+
+  const handleMapMarkerClick = (treasureId: number) => {
+    // 가게 목록 탭으로 전환
+    setActiveSubTab('가게');
+    
+    // 해당 가게로 스크롤
+    setTimeout(() => {
+      const element = document.getElementById(`treasure-${treasureId}`);
+      if (element) {
+        element.scrollIntoView({ 
+          behavior: 'smooth', 
+          block: 'center' 
+        });
+        
+        // 질문 자동으로 열기
+        setOpenQuizId(treasureId);
+      }
+    }, 100); // 탭 전환 후 스크롤
   };
 
   const handleQuizSubmit = (treasureId: number, answer: string) => {
@@ -126,6 +145,7 @@ const Exploration = () => {
           {treasures.map(treasure => (
             <React.Fragment key={treasure.id}>
               <li 
+                id={`treasure-${treasure.id}`}
                 className={treasure.found ? 'found item-card' : 'item-card'}
                 onClick={() => handleLocationClick(treasure.id)}
               >

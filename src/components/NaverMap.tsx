@@ -6,9 +6,10 @@ import { useScriptLoad } from '@/context/ScriptLoadContext';
 
 interface NaverMapProps {
   treasures: Treasure[];
+  onMarkerClick?: (treasureId: number) => void;
 }
 
-const NaverMap = ({ treasures }: NaverMapProps) => {
+const NaverMap = ({ treasures, onMarkerClick }: NaverMapProps) => {
   const mapElement = useRef<HTMLDivElement>(null);
   const { isLoaded } = useScriptLoad();
 
@@ -27,15 +28,22 @@ const NaverMap = ({ treasures }: NaverMapProps) => {
       zoom: 16,
     });
 
-    // 마커 생성 (원래의 이모지 아이콘 기능 복원)
+    // 마커 생성 및 클릭 이벤트 추가
     treasures.forEach(treasure => {
-      new naver.maps.Marker({
+      const marker = new naver.maps.Marker({
         position: new naver.maps.LatLng(treasure.lat, treasure.lng),
         map: map,
         icon: {
-          content: `<div style="font-size: 24px;">${treasure.icon}</div>`,
+          content: `<div style="font-size: 24px; cursor: pointer;">${treasure.icon}</div>`,
           anchor: new naver.maps.Point(12, 12),
         },
+      });
+
+      // 마커 클릭 이벤트 추가
+      naver.maps.Event.addListener(marker, 'click', () => {
+        if (onMarkerClick) {
+          onMarkerClick(treasure.id);
+        }
       });
     });
 
