@@ -11,7 +11,7 @@ const tabs = [
   { name: '스토리', icon: '📖' },
   { name: '탐험', icon: '🗺️' },
   { name: '보물', icon: '💎' },
-  { name: '커뮤니티', icon: '👥' }
+  { name: '커뮤니티', icon: '📷' }
 ];
 
 export const BottomNav = ({ activeTab, setActiveTab }: BottomNavProps) => {
