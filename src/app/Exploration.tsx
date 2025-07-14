@@ -192,7 +192,7 @@ const Exploration = () => {
         .item-card {
           display: flex;
           gap: 16px;
-          background-color: #e7f5ff; /* 배경색을 하늘색 계열로 변경 */
+          background-color: var(--secondary-light);
           padding: 16px;
           border-radius: 12px;
           border: 1px solid #e9ecef;
@@ -205,9 +205,10 @@ const Exploration = () => {
             box-shadow: 0 4px 12px rgba(0,0,0,0.08);
         }
         .item-card.found {
-          background-color: #fff7ed; /* 완료 시 연한 오렌지색 배경 */
-          border-color: #fb923c; /* 완료 시 진한 오렌지색 테두리 */
-        }
+          background-color: var(--secondary);
+          border-color: var(--secondary-dark);
+          color:#fff;
+          }
         .item-icon {
             font-size: 2.5rem;
             background-color: #f1f3f5;

@@ -25,6 +25,8 @@ body {
   --primary: #9d34ff; /* vibrant purple */
   --secondary: #ff8c00; /* orange */
   --primary-light: #f3e8ff;
+  --secondary-light: #ffe8cc;
+  --secondary-dark: #ff6a00;
 }
 
 /* utility classes */
