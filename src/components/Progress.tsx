@@ -23,7 +23,7 @@ const Progress = () => {
       <style jsx>{`
         .progress-container {
           padding: 10px 16px;
-          background-color: var(--background);
+          background-color: #ffffff;
           position: sticky;
           top: 0;
           z-index: 100;
