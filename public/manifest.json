@@ -1,27 +1,21 @@
 {
-  "name": "Street Tour - 골목 탐험",
-  "short_name": "Street Tour",
-  "description": "QR 코드로 골목을 탐험하고 보물을 찾는 모바일 게임",
+  "name": "Street Tour",
+  "short_name": "StreetTour",
+  "description": "QR 기반 스토리 투어 앱",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#f0f0f0",
-  "theme_color": "#000000",
-  "orientation": "portrait",
-  "scope": "/",
+  "theme_color": "#133046",
+  "background_color": "#F1E4B3",
   "icons": [
     {
       "src": "/icon-192x192.png",
       "sizes": "192x192",
-      "type": "image/png",
-      "purpose": "maskable any"
+      "type": "image/png"
     },
     {
-      "src": "/icon-512x512.png", 
+      "src": "/icon-512x512.png",
       "sizes": "512x512",
-      "type": "image/png",
-      "purpose": "maskable any"
+      "type": "image/png"
     }
-  ],
-  "categories": ["games", "entertainment", "travel"],
-  "lang": "ko-KR"
+  ]
 } 
