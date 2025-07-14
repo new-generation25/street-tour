@@ -40,7 +40,7 @@ const TreasureList = () => {
         }
         .treasure-item {
           aspect-ratio: 1 / 1;
-          background-color: var(--mission-incomplete);
+          background-color: transparent;
           border: 2px solid var(--mission-incomplete);
           border-radius: 12px;
           display: flex;
@@ -51,7 +51,7 @@ const TreasureList = () => {
           padding: 4px; /* 패딩을 8px에서 4px로 줄임 */
           transition: all 0.2s ease-in-out;
           filter: grayscale(0%);
-          opacity: 1;
+          opacity: 0.7;
         }
         .treasure-item.found {
           filter: grayscale(0%);
