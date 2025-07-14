@@ -11,6 +11,7 @@ interface NaverMapProps {
 
 const NaverMap = ({ treasures, onMarkerClick }: NaverMapProps) => {
   const mapElement = useRef<HTMLDivElement>(null);
+  const mapInstance = useRef<any>(null);
   const { isLoaded } = useScriptLoad();
   const [userLocation, setUserLocation] = useState<{ lat: number; lng: number } | null>(null);
 
@@ -36,6 +37,7 @@ const NaverMap = ({ treasures, onMarkerClick }: NaverMapProps) => {
     }
   }, []);
 
+  // 지도 초기화 및 렌더링
   useEffect(() => {
     // 조건 확인: 스크립트 로드 완료, 데이터 수신, DOM 요소 준비 완료
     if (!isLoaded || treasures.length === 0 || !mapElement.current) {
@@ -45,11 +47,18 @@ const NaverMap = ({ treasures, onMarkerClick }: NaverMapProps) => {
     const { naver } = window;
     if (!naver) return;
 
+    // 기존 지도 인스턴스가 있다면 제거
+    if (mapInstance.current) {
+      mapInstance.current.destroy();
+    }
+
     // 지도 인스턴스 생성
     const map = new naver.maps.Map(mapElement.current, {
       center: new naver.maps.LatLng(treasures[0].lat, treasures[0].lng),
       zoom: 16,
     });
+
+    mapInstance.current = map;
 
     // 마커 생성 및 클릭 이벤트 추가
     treasures.forEach(treasure => {
@@ -97,12 +106,41 @@ const NaverMap = ({ treasures, onMarkerClick }: NaverMapProps) => {
       });
     }
 
-    // 컴포넌트 언마운트 또는 재렌더링 시 지도 인스턴스 파괴 (Cleanup)
+    // 지도 리사이즈 이벤트 처리 (탭 전환 시 필요)
+    setTimeout(() => {
+      naver.maps.Event.trigger(map, 'resize');
+    }, 100);
+
+    // 컴포넌트 언마운트 시 지도 인스턴스 파괴 (Cleanup)
     return () => {
-      map.destroy();
+      if (mapInstance.current) {
+        mapInstance.current.destroy();
+        mapInstance.current = null;
+      }
     };
 
   }, [isLoaded, treasures, userLocation]); // userLocation도 의존성에 추가
+
+  // 컴포넌트가 다시 보여질 때 지도 리사이즈
+  useEffect(() => {
+    const handleResize = () => {
+      if (mapInstance.current && window.naver) {
+        setTimeout(() => {
+          window.naver.maps.Event.trigger(mapInstance.current, 'resize');
+        }, 100);
+      }
+    };
+
+    // ResizeObserver를 사용하여 컨테이너 크기 변화 감지
+    if (mapElement.current) {
+      const resizeObserver = new ResizeObserver(handleResize);
+      resizeObserver.observe(mapElement.current);
+      
+      return () => {
+        resizeObserver.disconnect();
+      };
+    }
+  }, []);
 
   // 로딩/데이터 없음 상태에서는 렌더링하지 않도록 하여 깜빡임 방지
   if (!isLoaded || treasures.length === 0) {

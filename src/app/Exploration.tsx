@@ -60,7 +60,7 @@ const Exploration = () => {
   const renderSubContent = () => {
     switch (activeSubTab) {
       case '지도':
-        return <NaverMap treasures={treasures} onMarkerClick={handleMapMarkerClick} />;
+        return <NaverMap key={`map-${activeSubTab}`} treasures={treasures} onMarkerClick={handleMapMarkerClick} />;
       case 'QR':
         return <QrScanner onScan={handleQrScanSuccess} onError={(error) => {
           console.error("QR Scanner Error:", error);
@@ -68,6 +68,8 @@ const Exploration = () => {
         }} />;
       case 'AR':
         return <div className="feature-placeholder">AR 뷰가 여기에 표시됩니다.</div>;
+      case '가게':
+        return <div className="feature-placeholder">가게 목록은 아래에서 확인하세요</div>;
       default:
         return null;
     }
@@ -132,11 +134,12 @@ const Exploration = () => {
         {renderSubContent()}
       </div>
 
-      {/* 2. 지도/QR/AR 탭 */}
+      {/* 2. 지도/QR/AR/가게 탭 */}
       <div className="sub-nav">
         <button onClick={() => setActiveSubTab('지도')} className={activeSubTab === '지도' ? 'active' : ''}>지도</button>
         <button onClick={() => setActiveSubTab('QR')} className={activeSubTab === 'QR' ? 'active' : ''}>QR</button>
         <button onClick={() => setActiveSubTab('AR')} className={activeSubTab === 'AR' ? 'active' : ''}>AR</button>
+        <button onClick={() => setActiveSubTab('가게')} className={activeSubTab === '가게' ? 'active' : ''}>가게</button>
       </div>
 
       {/* 3. 장소 목록 */}
