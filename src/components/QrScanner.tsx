@@ -89,76 +89,17 @@ const QrScannerComponent = ({ onScan, onError }: QrScannerComponentProps) => {
     // 여기서는 임시로 사용자 입력을 받는 방식으로 구현
   };
 
-  const handleManualInput = () => {
-    const input = prompt('QR 코드 값을 입력하세요 (테스트용):');
-    if (input) {
-      onScan(input);
-      stopCamera();
-    }
-  };
+  // 수동 입력 기능 제거됨
 
   useEffect(() => {
+    // 컴포넌트 마운트 시 자동으로 카메라 실행
+    startCamera();
     return () => {
       stopCamera();
     };
   }, []);
 
-  if (!isScannerActive) {
-    return (
-      <div className="scanner-prompt">
-        <button onClick={startCamera} className="scan-button">
-          📷 QR 코드 스캔하기
-        </button>
-        <button onClick={handleManualInput} className="manual-button">
-          ⌨️ 수동 입력 (테스트용)
-        </button>
-        
-        <style jsx>{`
-          .scanner-prompt {
-            display: flex;
-            flex-direction: column;
-            gap: 16px;
-            justify-content: center;
-            align-items: center;
-            height: 300px;
-            padding: 20px;
-          }
-          .scan-button {
-            padding: 16px 32px;
-            font-size: 1.1rem;
-            border-radius: 12px;
-            border: none;
-            background: linear-gradient(45deg, #845ef7, #7c3aed);
-            color: white;
-            cursor: pointer;
-            font-weight: bold;
-            box-shadow: 0 4px 12px rgba(132, 94, 247, 0.3);
-            transition: all 0.3s ease;
-          }
-          .scan-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 16px rgba(132, 94, 247, 0.4);
-          }
-          .manual-button {
-            padding: 12px 24px;
-            font-size: 0.9rem;
-            border-radius: 8px;
-            border: 2px solid #845ef7;
-            background: transparent;
-            color: #845ef7;
-            cursor: pointer;
-            font-weight: bold;
-            transition: all 0.3s ease;
-          }
-          .manual-button:hover {
-            background: #845ef7;
-            color: white;
-          }
-        `}</style>
-      </div>
-    );
-  }
-
+  // 버튼 제거 후 스캐너 UI만 표시
   return (
     <div className="scanner-container">
       <video
@@ -175,9 +116,6 @@ const QrScannerComponent = ({ onScan, onError }: QrScannerComponentProps) => {
         <p className="scan-instruction">QR 코드를 화면 중앙에 맞춰주세요</p>
         <button onClick={stopCamera} className="stop-button">
           ❌ 스캔 중지
-        </button>
-        <button onClick={handleManualInput} className="manual-button">
-          ⌨️ 수동 입력
         </button>
       </div>
 
