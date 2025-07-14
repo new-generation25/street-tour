@@ -192,10 +192,10 @@ const Exploration = () => {
         .item-card {
           display: flex;
           gap: 16px;
-          background-color: var(--primary-light);
+          background-color: #fdc83d;
           padding: 16px;
           border-radius: 12px;
-          border: 2px solid var(--primary-light);
+          border: 2px solid #fdc83d;
           position: relative;
           cursor: pointer;
           transition: all 0.2s ease-in-out;
@@ -212,7 +212,7 @@ const Exploration = () => {
         }
         .item-icon {
             font-size: 2.5rem;
-            background-color: #ffffff;
+            background-color: var(--primary-light);
             width: 60px;
             height: 60px;
             display: flex;

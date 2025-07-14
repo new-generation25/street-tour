@@ -2,7 +2,7 @@
   /* Primary palette */
   --primary: #f9841d; /* mission complete orange */
   --primary-dark: #845ef7; /* purple for nav and tabs */
-  --primary-light: #fdc83d; /* mission incomplete yellow */
+  --primary-light: #d3d1ef; /* body background light purple */
 
   /* Secondary palette */
   --secondary: #87ceeb; /* sky blue for header gradient */

@@ -40,8 +40,8 @@ const TreasureList = () => {
         }
         .treasure-item {
           aspect-ratio: 1 / 1;
-          background-color: var(--primary-light);
-          border: 2px solid var(--primary-light);
+          background-color: #fdc83d;
+          border: 2px solid #fdc83d;
           border-radius: 12px;
           display: flex;
           flex-direction: column;
