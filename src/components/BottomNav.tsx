@@ -34,7 +34,7 @@ export const BottomNav = ({ activeTab, setActiveTab }: BottomNavProps) => {
           left: 0;
           right: 0;
           height: 60px;
-          background-color: var(--primary-dark);
+          background-color: var(--nav-purple);
           backdrop-filter: blur(0);
           box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
           max-width: 480px;

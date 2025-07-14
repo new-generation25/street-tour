@@ -178,7 +178,7 @@ const Exploration = () => {
           transition: background-color 0.3s, color 0.3s;
         }
         .sub-nav button.active {
-          background-color: var(--primary);
+          background-color: var(--tab-purple);
           color: #fff;
           box-shadow: 0 1px 3px rgba(0,0,0,0.1);
         }
@@ -192,10 +192,10 @@ const Exploration = () => {
         .item-card {
           display: flex;
           gap: 16px;
-          background-color: #fdc83d;
+          background-color: var(--mission-incomplete);
           padding: 16px;
           border-radius: 12px;
-          border: 2px solid #fdc83d;
+          border: 2px solid var(--mission-incomplete);
           position: relative;
           cursor: pointer;
           transition: all 0.2s ease-in-out;
@@ -205,14 +205,14 @@ const Exploration = () => {
             box-shadow: 0 4px 12px rgba(0,0,0,0.08);
         }
         .item-card.found {
-          background-color: var(--primary);
-          border-color: var(--primary);
+          background-color: var(--mission-complete);
+          border-color: var(--mission-complete);
           color: #fff;
           box-shadow: 0 4px 12px rgba(249, 132, 29, 0.3);
         }
         .item-icon {
             font-size: 2.5rem;
-            background-color: var(--primary-light);
+            background-color: var(--icon-background);
             width: 60px;
             height: 60px;
             display: flex;

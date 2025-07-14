@@ -79,7 +79,7 @@ const Story = ({ onStart }: StoryProps) => {
             margin-bottom: 0;
         }
         .start-button {
-          background: linear-gradient(135deg, var(--primary), var(--secondary));
+          background: linear-gradient(135deg, var(--start-btn-yellow), var(--start-btn-orange));
           color: #ffffff;
           border: none;
           border-radius: 9999px;

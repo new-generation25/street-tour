@@ -40,8 +40,8 @@ const TreasureList = () => {
         }
         .treasure-item {
           aspect-ratio: 1 / 1;
-          background-color: #fdc83d;
-          border: 2px solid #fdc83d;
+          background-color: var(--mission-incomplete);
+          border: 2px solid var(--mission-incomplete);
           border-radius: 12px;
           display: flex;
           flex-direction: column;
@@ -56,8 +56,8 @@ const TreasureList = () => {
         .treasure-item.found {
           filter: grayscale(0%);
           opacity: 1;
-          border-color: var(--primary);
-          background-color: var(--primary);
+          border-color: var(--mission-complete);
+          background-color: var(--mission-complete);
           color: #fff;
           transform: scale(1.05);
           box-shadow: 0 4px 12px rgba(249, 132, 29, 0.3);

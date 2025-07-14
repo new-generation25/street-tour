@@ -1,11 +1,21 @@
 :root {
-  /* Primary palette */
-  --primary: #f9841d; /* mission complete orange */
-  --primary-dark: #845ef7; /* purple for nav and tabs */
-  --primary-light: #d3d1ef; /* body background light purple */
-
-  /* Secondary palette */
-  --secondary: #87ceeb; /* sky blue for header gradient */
-  --secondary-dark: #845ef7; /* reuse purple */
-  --secondary-light: #D93A2B; /* vibrant red */
+  /* Mission & Treasure colors */
+  --mission-complete: #f9841d;     /* 완료된 미션/보물 오렌지 */
+  --mission-incomplete: #fdc83d;   /* 미완료 미션/보물 노랑 */
+  
+  /* Navigation & UI colors */
+  --nav-purple: #845ef7;           /* 하단 네비게이션 퍼플 */
+  --tab-purple: #845ef7;           /* 탐험 탭 퍼플 */
+  
+  /* Header colors */
+  --header-purple: #845ef7;        /* 헤더 그라디언트 시작 퍼플 */
+  --header-skyblue: #87ceeb;       /* 헤더 그라디언트 끝 하늘색 */
+  
+  /* Background colors */
+  --body-background: #d3d1ef;      /* 전체 바디 배경 연한 퍼플 */
+  --icon-background: #d3d1ef;      /* 미션 아이콘 배경 */
+  
+  /* Button colors */
+  --start-btn-yellow: #fddf47;     /* 탐험 시작 버튼 시작색 */
+  --start-btn-orange: #f97517;     /* 탐험 시작 버튼 끝색 */
 } 
