@@ -316,7 +316,7 @@ const QuizBox = ({ treasure, onSubmit }: { treasure: Treasure, onSubmit: (id: nu
         .quiz-submit {
           padding: 10px 16px;
           border: none;
-          background-color: #845ef7;
+          background-color: var(--primary);
           color: white;
           border-radius: 6px;
           cursor: pointer;
