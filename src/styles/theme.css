@@ -1,0 +1,11 @@
+:root {
+  /* Primary palette */
+  --primary: #F26144; /* bright orange */
+  --primary-dark: #133046; /* deep navy */
+  --primary-light: #F1E4B3; /* cream */
+
+  /* Secondary palette */
+  --secondary: #15959F; /* teal */
+  --secondary-dark: #133046; /* reuse deep navy */
+  --secondary-light: #F4A090; /* soft peach */
+} 

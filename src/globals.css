@@ -2,6 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
+@import "./styles/theme.css";
+
 body {
   color: rgb(var(--foreground-rgb));
   background: #f0f2f5; /* 흰색에서 연한 회색으로 변경 */
@@ -19,15 +21,6 @@ body {
 .content-area {
   padding: 16px;
   padding-bottom: 80px; /* 하단 네비게이션 높이만큼 여백 */
-}
-
-:root {
-  --primary: #F2884B; /* orange */
-  --primary-light: #D9D9D9; /* light grey */
-  --primary-dark: #A6351C; /* brick red */
-  --secondary: #7D8C45; /* olive */
-  --secondary-light: #C5CF9B;
-  --secondary-dark: #732720; /* dark brown */
 }
 
 /* utility classes */
