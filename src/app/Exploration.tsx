@@ -192,10 +192,10 @@ const Exploration = () => {
         .item-card {
           display: flex;
           gap: 16px;
-          background-color: var(--secondary-light);
+          background-color: #f8f9fa;
           padding: 16px;
           border-radius: 12px;
-          border: 1px solid #e9ecef;
+          border: 2px solid #e9ecef;
           position: relative;
           cursor: pointer;
           transition: all 0.2s ease-in-out;
@@ -205,13 +205,14 @@ const Exploration = () => {
             box-shadow: 0 4px 12px rgba(0,0,0,0.08);
         }
         .item-card.found {
-          background-color: var(--secondary);
-          border-color: var(--secondary-dark);
-          color:#fff;
-          }
+          background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+          border-color: var(--primary-dark);
+          color: #fff;
+          box-shadow: 0 4px 12px rgba(79, 35, 140, 0.3);
+        }
         .item-icon {
             font-size: 2.5rem;
-            background-color: #f1f3f5;
+            background-color: #ffffff;
             width: 60px;
             height: 60px;
             display: flex;
@@ -219,11 +220,19 @@ const Exploration = () => {
             justify-content: center;
             border-radius: 8px;
             flex-shrink: 0;
+            border: 1px solid #e9ecef;
+        }
+        .item-card.found .item-icon {
+            background-color: rgba(255, 255, 255, 0.2);
+            border-color: rgba(255, 255, 255, 0.3);
         }
         .item-content h4 {
             font-weight: bold;
             margin-bottom: 4px;
-            color: #212529; /* 글자색을 더 진하게 */
+            color: #212529;
+        }
+        .item-card.found .item-content h4 {
+            color: #fff;
         }
         .item-content h4 span {
             font-size: 0.8rem;
@@ -231,16 +240,22 @@ const Exploration = () => {
             font-weight: normal;
             margin-left: 8px;
         }
+        .item-card.found .item-content h4 span {
+            color: rgba(255, 255, 255, 0.8);
+        }
         .item-content p {
             font-size: 0.9rem;
-            color: #495057; /* 글자색을 더 진하게 */
+            color: #495057;
+        }
+        .item-card.found .item-content p {
+            color: rgba(255, 255, 255, 0.9);
         }
         .found-check {
             position: absolute;
             top: 16px;
             right: 16px;
-            font-size: 1.5rem; /* 아이콘 크기 키움 */
-            color: #f97316; /* 더 잘보이는 오렌지색으로 변경 */
+            font-size: 1.5rem;
+            color: #fff;
         }
       `}</style>
     </div>
@@ -366,4 +381,4 @@ const Toast = ({ message, type }: { message: string; type: 'success' | 'error' |
   );
 };
 
-export default Exploration; 
+export default Exploration;

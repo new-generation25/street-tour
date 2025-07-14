@@ -40,8 +40,8 @@ const TreasureList = () => {
         }
         .treasure-item {
           aspect-ratio: 1 / 1;
-          background-color: var(--primary-light);
-          border: 1px solid var(--primary-light);
+          background-color: #f8f9fa;
+          border: 2px solid #e9ecef;
           border-radius: 12px;
           display: flex;
           flex-direction: column;
@@ -51,15 +51,16 @@ const TreasureList = () => {
           padding: 4px; /* 패딩을 8px에서 4px로 줄임 */
           transition: all 0.2s ease-in-out;
           filter: grayscale(90%);
-          opacity: 0.8;
+          opacity: 0.6;
         }
         .treasure-item.found {
           filter: grayscale(0%);
           opacity: 1;
           border-color: var(--primary-dark);
-          background-color: var(--primary);
-          color:#fff;
+          background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+          color: #fff;
           transform: scale(1.05);
+          box-shadow: 0 4px 12px rgba(79, 35, 140, 0.3);
         }
         .treasure-icon {
           font-size: 2rem;
@@ -70,6 +71,10 @@ const TreasureList = () => {
           font-size: 0.75rem;
           font-weight: 500;
           color: #495057;
+        }
+        .treasure-item.found .treasure-name {
+          color: #fff;
+          font-weight: 600;
         }
       `}</style>
     </div>
