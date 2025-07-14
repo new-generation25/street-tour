@@ -1,11 +1,11 @@
 :root {
   /* Primary palette */
-  --primary: #F2A74B; /* warm golden orange */
-  --primary-dark: #4F238C; /* deep purple */
-  --primary-light: #BAA0F2; /* soft lavender */
+  --primary: #f9841d; /* mission complete orange */
+  --primary-dark: #845ef7; /* purple for nav and tabs */
+  --primary-light: #fdc83d; /* mission incomplete yellow */
 
   /* Secondary palette */
-  --secondary: #3E518C; /* steel blue */
-  --secondary-dark: #4F238C; /* reuse deep purple */
+  --secondary: #87ceeb; /* sky blue for header gradient */
+  --secondary-dark: #845ef7; /* reuse purple */
   --secondary-light: #D93A2B; /* vibrant red */
 } 

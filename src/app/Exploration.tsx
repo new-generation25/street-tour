@@ -192,10 +192,10 @@ const Exploration = () => {
         .item-card {
           display: flex;
           gap: 16px;
-          background-color: #f8f9fa;
+          background-color: var(--primary-light);
           padding: 16px;
           border-radius: 12px;
-          border: 2px solid #e9ecef;
+          border: 2px solid var(--primary-light);
           position: relative;
           cursor: pointer;
           transition: all 0.2s ease-in-out;
@@ -205,10 +205,10 @@ const Exploration = () => {
             box-shadow: 0 4px 12px rgba(0,0,0,0.08);
         }
         .item-card.found {
-          background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
-          border-color: var(--primary-dark);
+          background-color: var(--primary);
+          border-color: var(--primary);
           color: #fff;
-          box-shadow: 0 4px 12px rgba(79, 35, 140, 0.3);
+          box-shadow: 0 4px 12px rgba(249, 132, 29, 0.3);
         }
         .item-icon {
             font-size: 2.5rem;
