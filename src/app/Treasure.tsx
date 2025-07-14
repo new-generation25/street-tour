@@ -78,7 +78,7 @@ const Treasure = () => {
           font-weight: bold;
           text-align: center;
           margin-bottom: 8px;
-          color: var(--primary);
+          color: #000000;
         }
         .reward-card {
           display: flex;
@@ -101,6 +101,7 @@ const Treasure = () => {
         .reward-info h4 {
           font-weight: bold;
           margin: 0;
+          color: #000000;
         }
         .reward-info p {
           font-size: 0.9rem;

@@ -70,7 +70,7 @@ const TreasureList = () => {
           margin-top: 8px;
           font-size: 0.75rem;
           font-weight: 500;
-          color: #495057;
+          color: #000000;
         }
         .treasure-item.found .treasure-name {
           color: #fff;
