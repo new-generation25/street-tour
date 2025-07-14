@@ -1,5 +1,5 @@
 "use client";
-import React from 'react';
+import React, { useState } from 'react';
 import Image from 'next/image';
 
 interface StoryProps {
@@ -7,6 +7,57 @@ interface StoryProps {
 }
 
 const Story = ({ onStart }: StoryProps) => {
+  const [isRequestingPermissions, setIsRequestingPermissions] = useState(false);
+
+  const handleStartClick = async () => {
+    setIsRequestingPermissions(true);
+    
+    try {
+      // 위치정보 권한 요청
+      if ("geolocation" in navigator) {
+        await new Promise((resolve, reject) => {
+          navigator.geolocation.getCurrentPosition(
+            (position) => {
+              console.log('위치정보 권한 허용됨:', position.coords);
+              resolve(position);
+            },
+            (error) => {
+              console.warn('위치정보 권한 거부되거나 사용할 수 없음:', error);
+              resolve(null); // 위치 정보가 없어도 계속 진행
+            },
+            {
+              enableHighAccuracy: true,
+              timeout: 5000,
+              maximumAge: 60000
+            }
+          );
+        });
+      }
+
+      // 카메라 권한 요청 (짧게 테스트하고 바로 종료)
+      try {
+        const stream = await navigator.mediaDevices.getUserMedia({
+          video: { facingMode: { ideal: 'environment' } },
+          audio: false,
+        });
+        console.log('카메라 권한 허용됨');
+        // 즉시 스트림 종료
+        stream.getTracks().forEach(track => track.stop());
+      } catch (cameraError) {
+        console.warn('카메라 권한 거부되거나 사용할 수 없음:', cameraError);
+        // 카메라가 없어도 앱은 계속 사용 가능
+      }
+
+      // 권한 요청 완료 후 탐험 시작
+      onStart();
+    } catch (error) {
+      console.error('권한 요청 중 오류:', error);
+      // 오류가 있어도 앱은 시작
+      onStart();
+    } finally {
+      setIsRequestingPermissions(false);
+    }
+  };
   return (
     <div className="story-container">
       <div className="story-content">
@@ -36,7 +87,13 @@ const Story = ({ onStart }: StoryProps) => {
           </p>
         </div>
       </div>
-      <button onClick={onStart} className="start-button">탐험 시작하기</button>
+      <button 
+        onClick={handleStartClick} 
+        disabled={isRequestingPermissions}
+        className="start-button"
+      >
+        {isRequestingPermissions ? '권한 요청 중...' : '탐험 시작하기'}
+      </button>
 
       <style jsx>{`
         .story-container {
@@ -90,8 +147,13 @@ const Story = ({ onStart }: StoryProps) => {
           transition: transform 0.2s;
           margin: 8px 16px 0; /* 상하좌우 여백 추가 */
         }
-        .start-button:hover {
+        .start-button:hover:not(:disabled) {
           transform: scale(1.05);
+        }
+        .start-button:disabled {
+          opacity: 0.7;
+          cursor: not-allowed;
+          transform: none;
         }
       `}</style>
     </div>

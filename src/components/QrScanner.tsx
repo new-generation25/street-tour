@@ -102,10 +102,31 @@ const QrScannerComponent = ({ onScan, onError }: QrScannerComponentProps) => {
   useEffect(() => {
     // 컴포넌트 마운트 시 자동으로 카메라 실행
     startCamera();
+    
+    // 컴포넌트 언마운트 시 확실히 카메라 정리
     return () => {
-      stopCamera();
+      if (stream) {
+        stream.getTracks().forEach(track => {
+          track.stop();
+          console.log('카메라 트랙 정리됨:', track.label);
+        });
+      }
+      if (scanIntervalRef.current) {
+        clearInterval(scanIntervalRef.current);
+      }
+      setStream(null);
+      setIsScannerActive(false);
     };
   }, []);
+
+  // 스트림이 변경될 때도 정리
+  useEffect(() => {
+    return () => {
+      if (stream) {
+        stream.getTracks().forEach(track => track.stop());
+      }
+    };
+  }, [stream]);
 
   // 버튼 제거 후 스캐너 UI만 표시
   return (
