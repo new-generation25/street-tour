@@ -78,6 +78,7 @@ const Treasure = () => {
           font-weight: bold;
           text-align: center;
           margin-bottom: 8px;
+          color: var(--primary);
         }
         .reward-card {
           display: flex;
@@ -92,7 +93,7 @@ const Treasure = () => {
         }
         .reward-card.unlocked {
           opacity: 1;
-          border-color: #845ef7;
+          border-color: var(--primary);
         }
         .reward-icon {
           font-size: 2rem;

@@ -178,7 +178,7 @@ const Exploration = () => {
           transition: background-color 0.3s, color 0.3s;
         }
         .sub-nav button.active {
-          background-color: #845ef7;
+          background-color: var(--primary);
           color: #fff;
           box-shadow: 0 1px 3px rgba(0,0,0,0.1);
         }

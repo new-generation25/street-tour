@@ -34,7 +34,7 @@ export const BottomNav = ({ activeTab, setActiveTab }: BottomNavProps) => {
           left: 0;
           right: 0;
           height: 60px;
-          background-color: #845ef7; /* 배경색을 보라색 계열로 변경 */
+          background-color: var(--primary);
           box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
           max-width: 480px;
           margin: 0 auto;

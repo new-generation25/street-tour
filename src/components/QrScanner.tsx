@@ -184,12 +184,12 @@ const QrScannerComponent = ({ onScan, onError }: QrScannerComponentProps) => {
           color: white;
         }
         .manual-button {
-          background: #845ef7;
+          background: linear-gradient(45deg, var(--primary), var(--secondary));
           color: white;
         }
         @keyframes pulse {
           0% { border-color: #fff; }
-          50% { border-color: #845ef7; }
+          50% { border-color: var(--primary); }
           100% { border-color: #fff; }
         }
       `}</style>

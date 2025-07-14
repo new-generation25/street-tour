@@ -19,4 +19,10 @@ body {
 .content-area {
   padding: 16px;
   padding-bottom: 80px; /* 하단 네비게이션 높이만큼 여백 */
+}
+
+:root {
+  --primary: #9d34ff; /* vibrant purple */
+  --secondary: #ff8c00; /* orange */
+  --primary-light: #f3e8ff;
 } 
