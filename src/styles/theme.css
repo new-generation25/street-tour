@@ -1,21 +1,25 @@
 :root {
-  /* Mission & Treasure colors */
-  --mission-complete: #f9841d;     /* 완료된 미션/보물 오렌지 */
-  --mission-incomplete: #fdc83d;   /* 미완료 미션/보물 노랑 */
+  /* Mission & Treasure colors - 피그마 색상 적용 */
+  --mission-complete: #00c3d0;        /* 완료된 미션/보물 - 청록색 */
+  --mission-incomplete: #caddf3;      /* 미완료 미션/보물 - 연한 파란색 */
   
-  /* Navigation & UI colors */
-  --nav-purple: #845ef7;           /* 하단 네비게이션 퍼플 */
-  --tab-purple: #845ef7;           /* 탐험 탭 퍼플 */
+  /* Navigation & UI colors - 피그마 색상 적용 */
+  --nav-purple: #855ef7;              /* 하단 네비게이션 보라색 */
+  --tab-purple: #ff9500;              /* 탐험 탭 활성화 - 주황색 */
   
-  /* Header colors */
-  --header-purple: #6c5ce7;        /* 헤더 그라디언트 시작 진한 퍼플 */
-  --header-skyblue: #87ceeb;       /* 헤더 그라디언트 끝 하늘색 */
+  /* Header colors - 피그마 색상 적용 */
+  --header-purple: #6e67e7;           /* 헤더 진한 보라색 */
+  --header-skyblue: #87ceeb;          /* 헤더 그라디언트 끝 하늘색 (기존 유지) */
   
-  /* Background colors */
-  --body-background: #d3d1ef;      /* 전체 바디 배경 연한 퍼플 */
-  --icon-background: #d3d1ef;      /* 미션 아이콘 배경 */
+  /* Background colors - 피그마 색상 적용 */
+  --body-background: #dfdfe9;         /* 전체 바디 배경 - 연한 회색-보라색 */
+  --icon-background: #f6f6fa;         /* 미션 아이콘 배경 - 매우 연한 보라색 */
   
-  /* Button colors */
-  --start-btn-yellow: #fddf47;     /* 탐험 시작 버튼 시작색 */
-  --start-btn-orange: #f97517;     /* 탐험 시작 버튼 끝색 */
-} 
+  /* Button colors - 피그마 색상 적용 */
+  --start-btn-yellow: #ff9500;        /* 탐험 시작 버튼 시작색 - 주황색 */
+  --start-btn-orange: #f79617;        /* 탐험 시작 버튼 끝색 - 주황색 */
+  
+  /* Additional colors for consistency */
+  --primary-light: #f6f6fa;           /* 연한 보라색 배경 */
+  --primary-dark: #6e67e7;            /* 진한 보라색 */
+}
