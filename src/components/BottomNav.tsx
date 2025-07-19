@@ -52,14 +52,14 @@ export const BottomNav = ({ activeTab, setActiveTab }: BottomNavProps) => {
           align-items: center;
           justify-content: center;
           gap: 4px;
-          color: #e9ecef; /* 아이콘/텍스트 기본 색상 변경 */
+          color: var(--text-tertiary); /* 아이콘/텍스트 기본 색상 변경 */
           font-size: 0.7rem;
         }
         .icon {
           font-size: 1.5rem;
         }
         .nav-button.active {
-          color: #ffffff; /* 활성화 시 색상을 흰색으로 변경 */
+          color: var(--text-white); /* 활성화 시 색상을 흰색으로 변경 */
         }
         .nav-button.active .nav-icon {
           transform: scale(1.1);

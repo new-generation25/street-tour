@@ -1,25 +1,48 @@
 :root {
-  /* Mission & Treasure colors - 피그마 색상 적용 */
-  --mission-complete: #00c3d0;        /* 완료된 미션/보물 - 청록색 */
-  --mission-incomplete: #caddf3;      /* 미완료 미션/보물 - 연한 파란색 */
+  /* Mission & Treasure colors - Figma 칼러셋 적용 */
+  --mission-complete: #00C7BE;        /* 완료된 미션/보물 - Figma Mint Light */
+  --mission-incomplete: #007AFF;      /* 미완료 미션/보물 - Figma Blue Light */
   
-  /* Navigation & UI colors - 피그마 색상 적용 */
-  --nav-purple: #855ef7;              /* 하단 네비게이션 보라색 */
-  --tab-purple: #ff9500;              /* 탐험 탭 활성화 - 주황색 */
+  /* Navigation & UI colors - Figma 칼러셋 적용 */
+  --nav-purple: #AF52DE;              /* 하단 네비게이션 - Figma Purple Light */
+  --tab-purple: #FF9500;              /* 탐험 탭 활성화 - Figma Orange Light */
   
-  /* Header colors - 피그마 색상 적용 */
-  --header-purple: #6e67e7;           /* 헤더 진한 보라색 */
-  --header-skyblue: #87ceeb;          /* 헤더 그라디언트 끝 하늘색 (기존 유지) */
+  /* Header colors - Figma 칼러셋 적용 */
+  --header-purple: #5856D6;           /* 헤더 진한 보라색 - Figma Indigo Light */
+  --header-skyblue: #55BEF0;          /* 헤더 그라디언트 끝 - Figma Cyan Light */
   
-  /* Background colors - 피그마 색상 적용 */
-  --body-background: #dfdfe9;         /* 전체 바디 배경 - 연한 회색-보라색 */
-  --icon-background: #f6f6fa;         /* 미션 아이콘 배경 - 매우 연한 보라색 */
+  /* Background colors - Figma 칼러셋 적용 */
+  --body-background: #F2F2F7;         /* 전체 바디 배경 - 연한 회색 */
+  --icon-background: #FFFFFF;         /* 미션 아이콘 배경 - 순백색 */
   
-  /* Button colors - 피그마 색상 적용 */
-  --start-btn-yellow: #ff9500;        /* 탐험 시작 버튼 시작색 - 주황색 */
-  --start-btn-orange: #f79617;        /* 탐험 시작 버튼 끝색 - 주황색 */
+  /* Button colors - Figma 칼러셋 적용 */
+  --start-btn-yellow: #FFCC00;        /* 탐험 시작 버튼 시작색 - Figma Yellow Light */
+  --start-btn-orange: #FF9500;        /* 탐험 시작 버튼 끝색 - Figma Orange Light */
   
-  /* Additional colors for consistency */
-  --primary-light: #f6f6fa;           /* 연한 보라색 배경 */
-  --primary-dark: #6e67e7;            /* 진한 보라색 */
+  /* Additional colors for consistency - Figma 칼러셋 적용 */
+  --primary-light: #FFFFFF;           /* 순백색 배경 */
+  --primary-dark: #5856D6;            /* Figma Indigo Light */
+  
+  /* Text colors - Figma 칼러셋 적용 */
+  --text-primary: #000000;            /* 주요 텍스트 - 검정색 */
+  --text-secondary: #6C6C70;          /* 보조 텍스트 - Figma Gray */
+  --text-tertiary: #8E8E93;           /* 3차 텍스트 - Figma Light Gray */
+  --text-white: #FFFFFF;              /* 흰색 텍스트 */
+  
+  /* UI Element colors - Figma 칼러셋 적용 */
+  --ui-background: #FFFFFF;           /* UI 배경 - 흰색 */
+  --ui-border: #E5E5EA;               /* UI 테두리 - Figma Light Gray */
+  --ui-separator: #C6C6C8;            /* 구분선 - Figma Medium Gray */
+  --ui-fill: #F2F2F7;                 /* UI 채우기 - Figma System Gray */
+  
+  /* Status colors - Figma 칼러셋 적용 */
+  --success: #34C759;                 /* 성공 - Figma Green */
+  --error: #FF3B30;                   /* 오류 - Figma Red */
+  --warning: #FF9500;                 /* 경고 - Figma Orange */
+  --info: #007AFF;                    /* 정보 - Figma Blue */
+  
+  /* Overlay colors - Figma 칼러셋 적용 */
+  --overlay-light: rgba(0, 0, 0, 0.1); /* 연한 오버레이 */
+  --overlay-medium: rgba(0, 0, 0, 0.3); /* 중간 오버레이 */
+  --overlay-dark: rgba(0, 0, 0, 0.7);   /* 진한 오버레이 */
 }

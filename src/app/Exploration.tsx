@@ -171,7 +171,7 @@ const Exploration = () => {
           overflow: hidden;
           border: 1px solid #dee2e6;
           box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-          background-color: #fff; /* 지도 배경 흰색으로 유지 */
+          background-color: var(--ui-background); /* 지도 배경 흰색으로 유지 */
         }
         .map-image-wrapper {
             position: relative;
@@ -183,12 +183,12 @@ const Exploration = () => {
           display: flex;
           align-items: center;
           justify-content: center;
-          background-color: #e9ecef;
-          color: #495057;
+          background-color: var(--ui-fill);
+          color: var(--text-secondary);
         }
         .sub-nav {
           display: flex;
-          background-color: #fff;
+          background-color: var(--ui-background);
           border-radius: 8px;
           padding: 4px;
           margin-bottom: 24px;
@@ -198,7 +198,7 @@ const Exploration = () => {
           padding: 8px 12px;
           border: none;
           background-color: transparent;
-          color: #495057;
+          color: var(--text-secondary);
           font-weight: bold;
           cursor: pointer;
           border-radius: 6px;
@@ -206,7 +206,7 @@ const Exploration = () => {
         }
         .sub-nav button.active {
           background-color: var(--tab-purple);
-          color: #fff;
+          color: var(--text-white);
           box-shadow: 0 1px 3px rgba(0,0,0,0.1);
         }
         .location-list ul {
@@ -234,7 +234,7 @@ const Exploration = () => {
         .item-card.found {
           background-color: var(--mission-complete);
           border-color: var(--mission-complete);
-          color: #fff;
+          color: var(--text-white);
           box-shadow: 0 4px 12px rgba(249, 132, 29, 0.3);
         }
         .item-icon {
@@ -256,14 +256,14 @@ const Exploration = () => {
         .item-content h4 {
             font-weight: bold;
             margin-bottom: 4px;
-            color: #212529;
+            color: var(--text-primary);
         }
         .item-card.found .item-content h4 {
-            color: #fff;
+            color: var(--text-white);
         }
         .item-content h4 span {
             font-size: 0.8rem;
-            color: #6c757d;
+            color: var(--text-tertiary);
             font-weight: normal;
             margin-left: 8px;
         }
@@ -272,7 +272,7 @@ const Exploration = () => {
         }
         .item-content p {
             font-size: 0.9rem;
-            color: #495057;
+            color: var(--text-secondary);
         }
         .item-card.found .item-content p {
             color: rgba(255, 255, 255, 0.9);
@@ -282,7 +282,7 @@ const Exploration = () => {
             top: 16px;
             right: 16px;
             font-size: 1.5rem;
-            color: #fff;
+            color: var(--text-white);
         }
       `}</style>
     </div>
@@ -320,11 +320,11 @@ const QuizBox = ({ treasure, onSubmit }: { treasure: Treasure, onSubmit: (id: nu
       </div>
       <style jsx>{`
         .quiz-box {
-          background-color: #f8f9fa; /* 퀴즈 박스 배경색 변경 */
+          background-color: var(--ui-fill); /* 퀴즈 박스 배경색 변경 */
           margin: 0;
           padding: 20px;
           border-radius: 0 0 12px 12px;
-          border: 1px solid #e9ecef;
+          border: 1px solid var(--ui-border);
           border-top: none;
           animation: slide-down 0.3s ease-out;
           margin-top: -12px; /* li와 자연스럽게 연결 */
@@ -343,7 +343,7 @@ const QuizBox = ({ treasure, onSubmit }: { treasure: Treasure, onSubmit: (id: nu
         .quiz-question {
           font-weight: bold;
           margin-bottom: 12px;
-          color: #212529; /* 질문 글자색 진하게 */
+          color: var(--text-primary); /* 질문 글자색 진하게 */
         }
         .quiz-form {
           display: flex;
@@ -352,15 +352,15 @@ const QuizBox = ({ treasure, onSubmit }: { treasure: Treasure, onSubmit: (id: nu
         .quiz-input {
           flex-grow: 1;
           padding: 10px;
-          border: 1px solid #ced4da;
+          border: 1px solid var(--ui-separator);
           border-radius: 6px;
-          color: #212529; /* 입력 글자색 검정으로 지정 */
+          color: var(--text-primary); /* 입력 글자색 검정으로 지정 */
         }
         .quiz-submit {
           padding: 10px 16px;
           border: none;
-          background-color: var(--primary);
-          color: white;
+          background-color: var(--primary-dark);
+          color: var(--text-white);
           border-radius: 6px;
           cursor: pointer;
           font-weight: bold;
@@ -392,10 +392,10 @@ const Toast = ({ message, type }: { message: string; type: 'success' | 'error' |
           white-space: pre-line;
         }
         .toast.success {
-          background-color: #28a745;
+          background-color: var(--success);
         }
         .toast.error {
-          background-color: #dc3545;
+          background-color: var(--error);
         }
         @keyframes fade-in-out {
           0% { opacity: 0; transform: translate(-50%, -50%) scale(0.8); }

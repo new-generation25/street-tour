@@ -11,7 +11,7 @@ export const Header = () => {
       <style jsx>{`
         .header {
           background: linear-gradient(135deg, var(--header-purple) 0%, var(--header-skyblue) 100%);
-          color: white;
+          color: var(--text-white);
           padding: 40px 20px 20px 20px;
           text-align: center;
           position: relative;

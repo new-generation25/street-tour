@@ -1,8 +1,8 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #F2F2F7;  /* Figma 라이트 모드 배경 */
+  --foreground: #000000;  /* Figma 텍스트 색상 */
 }
 
 @theme inline {
@@ -14,8 +14,8 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #000000;  /* Figma 다크 모드 배경 */
+    --foreground: #FFFFFF;  /* Figma 다크 모드 텍스트 */
   }
 }
 

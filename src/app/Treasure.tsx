@@ -63,11 +63,11 @@ const Treasure = () => {
         .bingo-status h2 {
           font-size: 1.8rem;
           font-weight: bold;
-          color: #343a40;
+          color: var(--text-primary);
         }
         .bingo-status p {
           font-size: 0.9rem;
-          color: #6c757d;
+          color: var(--text-secondary);
           margin-top: 5px;
         }
         .reward-section {
@@ -80,17 +80,17 @@ const Treasure = () => {
           font-weight: bold;
           text-align: center;
           margin-bottom: 8px;
-          color: #000000;
+          color: var(--text-primary);
         }
         .reward-card {
           display: flex;
           gap: 16px;
           padding: 16px;
           border-radius: 12px;
-          background: #fff;
+          background: var(--ui-background);
           align-items: center;
           opacity: 0.5;
-          border: 1px solid #e9ecef;
+          border: 1px solid var(--ui-border);
           transition: all 0.3s ease;
         }
         .reward-card.unlocked {
@@ -103,11 +103,11 @@ const Treasure = () => {
         .reward-info h4 {
           font-weight: bold;
           margin: 0;
-          color: #000000;
+          color: var(--text-primary);
         }
         .reward-info p {
           font-size: 0.9rem;
-          color: #495057;
+          color: var(--text-secondary);
           margin: 4px 0 0 0;
         }
         .reward-status, .reward-lock {
@@ -118,15 +118,15 @@ const Treasure = () => {
           margin-top: 16px;
           text-align: center;
           padding: 16px;
-          background: #f8f9fa;
+          background: var(--ui-fill);
           border-radius: 12px;
           font-size: 0.9rem;
-          color: #495057;
+          color: var(--text-secondary);
         }
         .reward-location p {
           margin: 4px 0 0 0;
           font-size: 0.8rem;
-          color: #6c757d;
+          color: var(--text-tertiary);
         }
       `}</style>
     </div>

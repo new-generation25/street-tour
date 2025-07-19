@@ -23,14 +23,14 @@ const Progress = () => {
       <style jsx>{`
         .progress-container {
           padding: 10px 16px;
-          background-color: #ffffff;
+          background-color: var(--ui-background);
           position: sticky;
           top: 0;
           z-index: 100;
           box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
         .progress-bar-wrapper {
-          background-color: #e9ecef;
+          background-color: var(--ui-fill);
             border-radius: 10px;
             overflow: hidden;
             margin-bottom: 10px;
@@ -63,7 +63,7 @@ const Progress = () => {
         }
         .progress-text {
             font-size: 0.9rem;
-            color: #495057; /* 더 어두운 색으로 변경 */
+            color: var(--text-secondary); /* 더 어두운 색으로 변경 */
             text-align: center;
         }
       `}</style>

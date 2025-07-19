@@ -125,19 +125,19 @@ const Story = ({ onStart }: StoryProps) => {
           font-weight: bold;
           margin-bottom: 1.5rem; /* 제목과 내용 사이 간격 추가 */
           text-align: center; /* 제목만 중앙 정렬 */
-          color: #212529; /* 제목 색상 추가 */
+          color: var(--text-primary); /* 제목 색상 추가 */
         }
         p {
           line-height: 1.7; /* 줄 간격 조정 */
           margin-bottom: 1rem; /* 문단 사이 간격 추가 */
-          color: #212529; /* 본문 텍스트 색상을 검정색으로 변경 */
+          color: var(--text-primary); /* 본문 텍스트 색상을 검정색으로 변경 */
         }
         p:last-child {
             margin-bottom: 0;
         }
         .start-button {
           background: linear-gradient(135deg, var(--start-btn-yellow), var(--start-btn-orange));
-          color: #ffffff;
+          color: var(--text-white);
           border: none;
           border-radius: 9999px;
           padding: 16px 32px;
