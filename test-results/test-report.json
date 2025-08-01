@@ -1,0 +1,23 @@
+{
+  "timestamp": "2025-08-01T05:19:14.228Z",
+  "pageTitle": "Create Next App",
+  "consoleErrors": [
+    "카메라 접근 오류: NotReadableError: Could not start video source",
+    "카메라 접근 오류: NotReadableError: Could not start video source",
+    "QR Scanner Error (fallback): NotReadableError: Could not start video source",
+    "QR Scanner Error: NotReadableError: Could not start video source",
+    "QR Scanner Error: NotReadableError: Could not start video source",
+    "QR Scanner Error (fallback): NotReadableError: Could not start video source",
+    "QR Scanner Error: NotReadableError: Could not start video source",
+    "QR Scanner Error: NotReadableError: Could not start video source"
+  ],
+  "networkErrors": [],
+  "testsCompleted": [
+    "homepage",
+    "exploration",
+    "qr-scanner",
+    "treasure",
+    "community"
+  ],
+  "status": "FAIL"
+}
