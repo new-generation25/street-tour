@@ -30,65 +30,78 @@ export interface TreasureContextType {
   setTestMode: (mode: boolean) => void;
 }
 
-// 초기 보물 데이터
+// 초기 보물 데이터 - 봉황 메모리즈: 아버지의 타임캡슐
 const initialTreasuresData: Treasure[] = [
   {
     id: 1,
-    name: '카페 봉황 1935',
-    subtitle: '1935년',
-    description: '일제강점기 적산가옥을 리모델링한 다국적 향취의 카페',
-    icon: '🏛️',
+    name: '봉황 1935',
+    subtitle: '미션 1',
+    description: '엄마와의 러브스토리 - 풍선초 씨앗으로 하트 키링 만들기',
+    icon: '💕',
     found: false,
-    lat: 35.228503, lng: 128.876850, // 수정: Max님께서 알려주신 정확한 좌표
+    lat: 35.228503, lng: 128.876850,
     quiz: {
-      image: '/bonghwang1935.png', // 이미지 경로 수정
-      question: '현재는 카페가 된 봉황 1935는 몇년도에 세워진 건물일까요?',
-      answer: '1935'
+      image: '/bonghwang1935.png',
+      question: '풍선초의 씨앗 모양은 무엇일까요? (힌트: 사랑을 상징하는 모양)',
+      answer: '하트'
     }
   },
   {
     id: 2,
     name: '미야상회',
-    subtitle: '전통',
-    description: '어릴 적 동네에 있던 작은 상점의 정취를 간직한 곳',
-    icon: '🏪',
+    subtitle: '미션 2',
+    description: '바나나우유의 약속 - 목욕탕 다녀온 후 아버지가 사오던 음식 찾기',
+    icon: '🥛',
     found: false,
-    lat: 35.229124, lng: 128.878581, // 수정: Max님께서 알려주신 정확한 좌표
+    lat: 35.229124, lng: 128.878581,
     quiz: {
-      image: '/miyastore.png', // 이미지 경로 수정
-      question: '미야상회 사장님의 이름은 무엇일까요?',
-      answer: '경미'
+      image: '/miyastore.png',
+      question: '아버지가 매주 일요일마다 목욕탕 다녀온 후 미야상회에서 사오던 음식은? (힌트: 채연의 나나나 춤, CM송)',
+      answer: '바나나우유'
     }
   },
   {
     id: 3,
-    name: '카페 탱자',
-    subtitle: '정원',
-    description: '아름다운 정원과 고즈넉한 분위기가 매력적인 전통 찻집',
-    icon: '🌳',
+    name: '능소화 고택',
+    subtitle: '미션 3',
+    description: '능소화 사진 - 아버지가 제일 좋아하던 꽃 앞에서 예쁜 사진 찍기',
+    icon: '📸',
     found: false,
-    lat: 35.229360, lng: 128.879832, // 수정: Max님께서 알려주신 정확한 좌표
+    lat: 35.229500, lng: 128.879000, // 능소화 고택 추정 좌표
     quiz: {
       image: '/taengja.png',
-      question: '카페 탱자에는 탱자나무가 있다, 없다?',
-      answer: '있다'
+      question: '능소화는 언제 피는 꽃일까요? (힌트: 여름에 피었다 지는 꽃, 지금은 꽃이 없지만 예전엔 동네에 많았어요)',
+      answer: '여름'
     }
   },
-  // ... 나머지 13개 보물 데이터 ...
-  // (나머지 데이터는 퀴즈 내용을 임시로 채워넣겠습니다)
-  { id: 4, name: '달빛조각', subtitle: '공방', description: '...', icon: '🌙', found: false, lat: 35.2370, lng: 128.8755, quiz: { image: '', question: 'Q4', answer: 'A4' } },
-  { id: 5, name: '별가루', subtitle: '소품샵', description: '...', icon: '✨', found: false, lat: 35.2368, lng: 128.8765, quiz: { image: '', question: 'Q5', answer: 'A5' } },
-  { id: 6, name: '봉황깃털', subtitle: '기념품', description: '...', icon: '🪶', found: false, lat: 35.2375, lng: 128.8775, quiz: { image: '', question: 'Q6', answer: 'A6' } },
-  { id: 7, name: '수로왕인장', subtitle: '유물', description: '...', icon: '👑', found: false, lat: 35.2362, lng: 128.8772, quiz: { image: '', question: 'Q7', answer: 'A7' } },
-  { id: 8, name: '옥구슬', subtitle: '보석', description: '...', icon: '🟢', found: false, lat: 35.2379, lng: 128.8768, quiz: { image: '', question: 'Q8', answer: 'A8' } },
-  { id: 9, name: '황금열쇠', subtitle: '미스터리', description: '...', icon: '🔑', found: false, lat: 35.2360, lng: 128.8763, quiz: { image: '', question: 'Q9', answer: 'A9' } },
-  { id: 10, name: '시간의 모래', subtitle: '유물', description: '...', icon: '⏳', found: false, lat: 35.2382, lng: 128.8782, quiz: { image: '', question: 'Q10', answer: 'A10' } },
-  { id: 11, name: '지혜의 두루마리', subtitle: '고서', description: '...', icon: '📜', found: false, lat: 35.2367, lng: 128.8758, quiz: { image: '', question: 'Q11', answer: 'A11' } },
-  { id: 12, name: '용기의 물약', subtitle: '비약', description: '...', icon: '🧪', found: false, lat: 35.2373, lng: 128.8785, quiz: { image: '', question: 'Q12', answer: 'A12' } },
-  { id: 13, name: '고요의 피리', subtitle: '악기', description: '...', icon: '🎶', found: false, lat: 35.2358, lng: 128.8778, quiz: { image: '', question: 'Q13', answer: 'A13' } },
-  { id: 14, name: '수호의 방패', subtitle: '장비', description: '...', icon: '🛡️', found: false, lat: 35.2385, lng: 128.8760, quiz: { image: '', question: 'Q14', answer: 'A14' } },
-  { id: 15, name: '인연의 실', subtitle: '전설', description: '...', icon: '❤️', found: false, lat: 35.2355, lng: 128.8765, quiz: { image: '', question: 'Q15', answer: 'A15' } },
-  { id: 16, name: '가야의 왕관', subtitle: '국보', description: '...', icon: '👑', found: false, lat: 35.2388, lng: 128.8770, quiz: { image: '', question: 'Q16', answer: 'A16' } },
+  {
+    id: 4,
+    name: '카페 탱자',
+    subtitle: '미션 4',
+    description: '아버지의 플레이리스트 - 아버지가 좋아하던 음악 듣고 편지 쓰기',
+    icon: '🎵',
+    found: false,
+    lat: 35.229360, lng: 128.879832,
+    quiz: {
+      image: '/taengja.png',
+      question: '아버지(강민수)가 소영을 생각하며 신청한 노래는? (힌트: 이문세의 노래, "내 곁에만 머물러요 떠나면 안 돼요", 소녀로 남아주길 바랐던 아버지의 마음)',
+      answer: '소녀'
+    }
+  },
+  {
+    id: 5,
+    name: '방하림',
+    subtitle: '미션 5',
+    description: '가족오락관 - 아버지가 한 달 전부터 준비한 마지막 소원, 가족과 함께 게임하기',
+    icon: '🎮',
+    found: false,
+    lat: 35.230000, lng: 128.880000, // 방하림 추정 좌표
+    quiz: {
+      image: '',
+      question: 'ㅂㅎㅁㅁㄹㅈ 이 자음으로 된 단어는? 오늘 여러분들이 참여한 프로그램의 이름입니다. (힌트: 봉황동의 추억)',
+      answer: '봉황메모리즈'
+    }
+  },
 ];
 
 // Context 생성 (처음엔 비어있음)
