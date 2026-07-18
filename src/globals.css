@@ -2,10 +2,27 @@
 @tailwind components;
 @tailwind utilities;
 
+html {
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  touch-action: manipulation;
+}
+
 body {
   color: rgb(var(--foreground-rgb));
   background: var(--body-background); /* 테마 배경색 */
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+  width: 100%;
+  position: relative;
+}
+
+* {
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .app-container {
@@ -13,7 +30,11 @@ body {
   margin: 0 auto;
   background-color: var(--body-background);
   min-height: 100vh;
+  min-height: -webkit-fill-available; /* iOS Safari 대응 */
   box-shadow: 0 0 20px rgba(0,0,0,0.05);
+  position: relative;
+  overflow-x: hidden;
+  width: 100%;
 }
 
 .content-area {
@@ -35,4 +56,8 @@ body {
 .bg-gradient-main {
   background: linear-gradient(135deg, var(--header-purple) 0%, var(--header-skyblue) 100%);
   color:#fff;
+}
+
+/* nextjs-portal 스타일 - left와 top 위치 속성 제거 */
+nextjs-portal {
 } 

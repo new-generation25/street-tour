@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState, useImperativeHandle, forwardRef } from 'react';
 import { Treasure } from '@/context/TreasureContext';
 import { useScriptLoad } from '@/context/ScriptLoadContext';
 
@@ -9,7 +9,11 @@ interface NaverMapProps {
   onMarkerClick?: (treasureId: number) => void;
 }
 
-const NaverMap = ({ treasures, onMarkerClick }: NaverMapProps) => {
+export interface NaverMapHandle {
+  setCenter: (treasureId: number) => void;
+}
+
+const NaverMap = forwardRef<NaverMapHandle, NaverMapProps>(({ treasures, onMarkerClick }, ref) => {
   const mapElement = useRef<HTMLDivElement>(null);
   const mapInstance = useRef<any>(null);
   const { isLoaded } = useScriptLoad();
@@ -60,6 +64,14 @@ const NaverMap = ({ treasures, onMarkerClick }: NaverMapProps) => {
 
     mapInstance.current = map;
 
+    // 외부에서 지도 중심 변경할 수 있도록 함수 노출
+    (window as any).__naverMapSetCenter = (treasureId: number) => {
+      const treasure = treasures.find(t => t.id === treasureId);
+      if (treasure && mapInstance.current) {
+        mapInstance.current.setCenter(new naver.maps.LatLng(treasure.lat, treasure.lng));
+      }
+    };
+
     // 마커 생성 및 클릭 이벤트 추가
     treasures.forEach(treasure => {
       const marker = new naver.maps.Marker({
@@ -73,6 +85,9 @@ const NaverMap = ({ treasures, onMarkerClick }: NaverMapProps) => {
 
       // 마커 클릭 이벤트 추가
       naver.maps.Event.addListener(marker, 'click', () => {
+        // 지도 중심을 해당 마커 위치로 이동
+        map.setCenter(new naver.maps.LatLng(treasure.lat, treasure.lng));
+        
         if (onMarkerClick) {
           onMarkerClick(treasure.id);
         }
@@ -119,7 +134,17 @@ const NaverMap = ({ treasures, onMarkerClick }: NaverMapProps) => {
       }
     };
 
-  }, [isLoaded, treasures, userLocation]); // userLocation도 의존성에 추가
+  }, [isLoaded, treasures, userLocation, onMarkerClick]); // 의존성 추가
+
+  // ref를 통해 외부에서 지도 중심 변경 함수 노출
+  useImperativeHandle(ref, () => ({
+    setCenter: (treasureId: number) => {
+      const treasure = treasures.find(t => t.id === treasureId);
+      if (treasure && mapInstance.current && window.naver) {
+        mapInstance.current.setCenter(new window.naver.maps.LatLng(treasure.lat, treasure.lng));
+      }
+    }
+  }), [treasures]);
 
   // 컴포넌트가 다시 보여질 때 지도 리사이즈
   useEffect(() => {
@@ -148,6 +173,8 @@ const NaverMap = ({ treasures, onMarkerClick }: NaverMapProps) => {
   }
   
   return <div ref={mapElement} style={{ width: '100%', height: '100%' }} />;
-};
+});
+
+NaverMap.displayName = 'NaverMap';
 
 export default NaverMap; 

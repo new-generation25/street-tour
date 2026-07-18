@@ -1,10 +1,10 @@
 "use client";
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 import { useTreasures, Treasure } from '@/context/TreasureContext';
 import Confetti from 'react-confetti';
-import NaverMap from '@/components/NaverMap';
+import NaverMap, { NaverMapHandle } from '@/components/NaverMap';
 import QrScanner from '@/components/QrScanner'; // QrScanner 컴포넌트 import
 
 const Exploration = () => {
@@ -13,6 +13,7 @@ const Exploration = () => {
   const { treasures, findTreasure } = useTreasures();
   const [toast, setToast] = useState<{ message: string; type: 'success' | 'error' | '' }>({ message: '', type: '' });
   const [showConfetti, setShowConfetti] = useState(false);
+  const mapRef = useRef<NaverMapHandle>(null);
 
   useEffect(() => {
     if (toast.message) {
@@ -60,7 +61,7 @@ const Exploration = () => {
   const renderSubContent = () => {
     switch (activeSubTab) {
       case '지도':
-        return <NaverMap key={`map-${Date.now()}`} treasures={treasures} onMarkerClick={handleMapMarkerClick} />;
+        return <NaverMap ref={mapRef} key={`map-${Date.now()}`} treasures={treasures} onMarkerClick={handleMapMarkerClick} />;
       case 'QR':
         return <QrScanner onScan={handleQrScanSuccess} onError={(error) => {
           console.error("QR Scanner Error:", error);
@@ -75,6 +76,11 @@ const Exploration = () => {
 
   const handleLocationClick = (treasureId: number) => {
     setOpenQuizId(prevId => (prevId === treasureId ? null : treasureId)); // 클릭 시 퀴즈 열고 닫기
+    
+    // 지도 탭이 활성화되어 있고 지도 인스턴스가 있으면 해당 위치로 지도 중심 이동
+    if (activeSubTab === '지도' && mapRef.current) {
+      mapRef.current.setCenter(treasureId);
+    }
   };
 
   const handleMapMarkerClick = (treasureId: number) => {
@@ -219,10 +225,13 @@ const Exploration = () => {
         .item-card {
           display: flex;
           gap: 16px;
-          background-color: var(--mission-incomplete);
+          background-color: rgba(5, 176, 199, 1);
           padding: 16px;
           border-radius: 12px;
-          border: 2px solid var(--mission-incomplete);
+          border-width: 0px;
+          border-color: rgba(0, 0, 0, 0);
+          border-style: none;
+          border-image: none;
           position: relative;
           cursor: pointer;
           transition: all 0.2s ease-in-out;
@@ -256,14 +265,25 @@ const Exploration = () => {
         .item-content h4 {
             font-weight: bold;
             margin-bottom: 4px;
-            color: var(--text-primary);
+            color: var(--text-white);
+            border-width: 1px;
+            border-color: rgba(0, 0, 0, 1);
+            border-style: solid;
+            border-image: none;
+            font-size: 18px;
         }
         .item-card.found .item-content h4 {
             color: var(--text-white);
         }
+        #treasure-5 .item-content h4 {
+            border-width: 0px;
+            border-color: rgba(0, 0, 0, 0);
+            border-style: none;
+            border-image: none;
+        }
         .item-content h4 span {
             font-size: 0.8rem;
-            color: var(--text-tertiary);
+            color: var(--body-background);
             font-weight: normal;
             margin-left: 8px;
         }
@@ -272,7 +292,7 @@ const Exploration = () => {
         }
         .item-content p {
             font-size: 0.9rem;
-            color: var(--text-secondary);
+            color: var(--background);
         }
         .item-card.found .item-content p {
             color: rgba(255, 255, 255, 0.9);

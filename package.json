@@ -6,7 +6,8 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "e2e-test": "node e2e-test.js"
   },
   "dependencies": {
     "@react-hook/window-size": "^3.1.1",

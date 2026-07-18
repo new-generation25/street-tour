@@ -5,12 +5,13 @@ import React from 'react';
 export const Header = () => {
   return (
     <div className="header">
-        <div className="logo-circle">🐦</div>
-        <h1>봉황대 메이즈러너</h1>
-        <p>맥과 함께하는 골목투어 어드벤처</p>
+        <div className="logo-circle">💌</div>
+        <h1>봉황 메모리즈</h1>
+        <p>아버지의 타임캡슐</p>
       <style jsx>{`
         .header {
-          background: linear-gradient(135deg, var(--header-purple) 0%, var(--header-skyblue) 100%);
+          background: unset;
+          background-color: unset;
           color: var(--text-white);
           padding: 40px 20px 20px 20px;
           text-align: center;
